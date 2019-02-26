@@ -1,0 +1,23 @@
+--cpu Cortex-M3
+"bluepillv2\startup_stm32f103xb.o"
+"bluepillv2\main.o"
+"bluepillv2\stm32f1xx_it.o"
+"bluepillv2\stm32f1xx_hal_msp.o"
+"bluepillv2\stm32f1xx_hal_gpio_ex.o"
+"bluepillv2\stm32f1xx_hal_tim.o"
+"bluepillv2\stm32f1xx_hal_tim_ex.o"
+"bluepillv2\stm32f1xx_hal_uart.o"
+"bluepillv2\stm32f1xx_hal.o"
+"bluepillv2\stm32f1xx_hal_rcc.o"
+"bluepillv2\stm32f1xx_hal_rcc_ex.o"
+"bluepillv2\stm32f1xx_hal_gpio.o"
+"bluepillv2\stm32f1xx_hal_dma.o"
+"bluepillv2\stm32f1xx_hal_cortex.o"
+"bluepillv2\stm32f1xx_hal_pwr.o"
+"bluepillv2\stm32f1xx_hal_flash.o"
+"bluepillv2\stm32f1xx_hal_flash_ex.o"
+"bluepillv2\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "bluepillv2\bluepillv2.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "bluepillv2.map" -o bluepillv2\bluepillv2.axf
