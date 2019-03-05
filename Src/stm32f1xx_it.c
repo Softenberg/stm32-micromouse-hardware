@@ -292,7 +292,12 @@ void speedProfile(void){
 
 void getEncoderStatus(void){
 	leftEncoder = TIM2->CNT;//read current encoder ticks from register of 32 bit general purpose timer 2
+	
 	leftEncoderChange = leftEncoder - leftEncoderOld; 
+	/*if(leftEncoder > 0 && leftEncoder < 10000 && leftEncoderOld > 60000){
+		leftEncoderChange = 0xFFFF - leftEncoderOld + leftEncoder;
+	}*/ //This code solves the problem when the encoder counter overflows and creates a large number => tick in the motor.
+	
 	leftEncoderOld = leftEncoder;
 					
 	leftEncoderCount += leftEncoderChange;
