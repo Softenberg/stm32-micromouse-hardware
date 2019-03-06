@@ -339,6 +339,7 @@ int saturation(int signal){
 		value = 0xFFFF;
 	}else if( signal < 0){
 		/* should be running the oposite direction */
+		//Should not happen if it is a unsigned.
 		value = 0x1000;
 	}
 	return value;

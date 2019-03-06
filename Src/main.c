@@ -172,7 +172,7 @@ int main(void)
 		/* We still need to take the serial signal and convert it to USB with an adapter. */
 		/* Pins are PA2 -> TX, PA3 -> RX */
 		/*HAL_UART_Transmit(&huart2, msg, 10, 100);*/ 
-	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	  HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
 	  HAL_Delay(500);
   }
   /* USER CODE END 3 */
