@@ -148,9 +148,13 @@ int main(void)
 	
 	/*Enable the motor*/
 	HAL_GPIO_WritePin(H_Bridge_Enable_GPIO_Port, H_Bridge_Enable_Pin, GPIO_PIN_SET);
-	/* Set direction to CW (Clock Wise) Rotation*/
+	/* Right motor -> CW */
 	HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_RESET);
+	/* Left motor -> CCW */
+	HAL_GPIO_WritePin(BIN1_GPIO_Port, BIN1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(BIN2_GPIO_Port, BIN2_Pin, GPIO_PIN_SET);
+	
 	
 	/* Start PWM timer and spin up the motor to half speed*/
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
@@ -168,10 +172,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  //speed = countDiff * 1000.0 / 2096.0 / 19.0 * 3.141592 * 0.04;
-		/* We still need to take the serial signal and convert it to USB with an adapter. */
-		/* Pins are PA2 -> TX, PA3 -> RX */
-		/*HAL_UART_Transmit(&huart2, msg, 10, 100);*/ 
 	  HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
 	  HAL_Delay(500);
   }
