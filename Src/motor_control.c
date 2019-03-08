@@ -42,8 +42,8 @@ int posPwmX = 0;
 int posPwmW = 0;
 float kpX = 30, kdX = 10;  //original is 2 and 4
 float kpW = 10, kdW = 12;//used in straight, original is 1 and 12
-float accX = 100; //0.6m/s/s  => 600mm/s, The unit i use is cm/s or cm/s^2, should be mm/s instead I think
-float decX = 100; 
+float accX = 1000;//0.6m/s/s  => 600mm/s, The unit i use is cm/s or cm/s^2, should be mm/s instead I think
+float decX = 1000; 
 float accW = 1; //cm/s^2 
 float decW = 1;
 
@@ -80,27 +80,18 @@ void getEncoderStatus(void){
 	leftEncoderChange = leftEncoder - leftEncoderOld;
 	rightEncoderChange = rightEncoder - rightEncoderOld;
 	
-	/*
-	// The following code is needed because we are only using 16 bit timers which overflows alot with our high res. encoders.
-	if(targetSpeedX > 0 && leftEncoderChange < 0){
-		//We are suppose to be moving forward but we overflowed the counter and it thinks we are moing in the wrong direction.
-		leftEncoderChange = 0xFFFF - leftEncoderOld + leftEncoder;
-		forwardCorrection++;
-	}else if(targetSpeedX < 0 && leftEncoderChange > 0 ){
-		//Suppose to be moving in reverse but we overflowed
+	if(leftEncoderChange > 0xF000){
 		leftEncoderChange = leftEncoder - 0xFFFF - leftEncoderOld;
-		lRevCorrVal = leftEncoderChange;
-		reverseCorrection++;
+	}else if(leftEncoderChange < - 0xF000){
+		leftEncoderChange = 0xFFFF - leftEncoderOld + leftEncoder;
 	}
 	
-	if(targetSpeedX > 0 && rightEncoderChange < 0){
-		rightEncoderChange = 0xFFFF - rightEncoderOld + rightEncoder;
-		forwardCorrection++;
-	}else if(targetSpeedX < 0 && rightEncoderChange > 0){
+	if(rightEncoderChange > 0xF000){
 		rightEncoderChange = rightEncoder - 0xFFFF - rightEncoderOld;
-		rRevCorrVal = rightEncoderChange;
-		reverseCorrection++;
-	}*/
+	}else if(rightEncoderChange < - 0xF000){
+		rightEncoderChange = 0xFFFF - rightEncoderOld + rightEncoder;
+	}
+	
 	
 	encoderChange = (leftEncoderChange + rightEncoderChange)/2;	 
 
@@ -118,7 +109,7 @@ void getEncoderStatus(void){
 void updateCurrentSpeed(void){
 	if(curSpeedX < targetSpeedX){
 		curSpeedX += (float)speedToCounts(accX*2)/1000; //Original was 100, not 1000, don't know what is correct
-		if(curSpeedX > targetSpeedX)		//I think it should be 1000 since it runs once every ms.
+		if(curSpeedX > targetSpeedX)		// 100 was original since accW was in cm/s^2 and not mm/s^2
 			curSpeedX = targetSpeedX;
 	}else if(curSpeedX > targetSpeedX){
 		curSpeedX -= (float)speedToCounts(decX*2)/1000;
