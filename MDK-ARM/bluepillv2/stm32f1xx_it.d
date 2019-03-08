@@ -30,3 +30,4 @@ bluepillv2\stm32f1xx_it.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim
 bluepillv2\stm32f1xx_it.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 bluepillv2\stm32f1xx_it.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 bluepillv2\stm32f1xx_it.o: ../Inc/stm32f1xx_it.h
+bluepillv2\stm32f1xx_it.o: ../Inc/motor_control.h

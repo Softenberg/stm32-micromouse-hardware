@@ -38,6 +38,7 @@
 #include "stm32f1xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "motor_control.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,43 +58,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-uint32_t lastCount; 
-uint32_t currentCount; 
-uint32_t leftEncoder;
-uint32_t leftEncoderChange;
-uint32_t leftEncoderOld;
-uint32_t leftEncoderCount;
-int32_t distanceLeft;
-double refSpeed = 500;
-double nowSpeed;
-
+//This should probably be a extern variable that is used in main. 
 uint32_t Millis = 0;
-float curSpeedX = 0;
-float curSpeedW = 0;
-int targetSpeedX = 0;
-int targetSpeedW = 0;
-int encoderFeedbackX = 0;
-int encoderFeedbackW = 0;
-float pidInputX = 0;
-float pidInputW = 0;
-double speedErrorX = 0.0;
-float posErrorW = 0;
-float oldSpeedErrorX = 0;
-float oldPosErrorW = 0;
-int speedPwmX = 0;
-int posPwmW = 0;
-float kpX = 50, kdX = 4;
-float kpW = 1, kdW = 12;//used in straight
-float kpW1 = 1;//used for T1 and T3 in curve turn
-float kdW1 = 26;
-float kpW2 = 1;//used for T2 in curve turn
-float kdW2 = 36;
-float accX = 600;//6m/s/s  
-float decX = 600; 
-float accW = 1; //cm/s^2
-float decW = 1;    
-
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -237,20 +203,15 @@ void SysTick_Handler(void)
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
   /* USER CODE BEGIN SysTick_IRQn 1 */
-	speedProfile();
 	
 	
-	/*
-  currentCount = TIM2->CNT;
-  countDiff = currentCount - lastCount;
-	if(countDiff > 0 && countDiff < 5){
-		countDiff = 0;
+	//Stops the reglerloop from starting until after 2s. 
+	if(Millis >= 2000){
+		speedProfile();
 	}
-	if(countDiff < 0){
-		countDiff = -countDiff;
-	}
-  lastCount = currentCount;
-	*/
+	
+	Millis++;
+
   /* USER CODE END SysTick_IRQn 1 */
 }
 
@@ -276,86 +237,6 @@ void USART2_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-int speed_to_counts(int speed){
-	return  speed * 1000.0 / 2096.0 / 19.0 * 3.141592 * 0.04;
-}
-//speed to count or count to speed are the macro or function to make the unit conversion
-// between encoder_counts/ms and mm/ms or any practical units you use.
-   
-
-void speedProfile(void){	
-	getEncoderStatus();
-	//use updateCurrentSpeed when normal regulator is working.
-	//updateCurrentSpeed();
-	calculateMotorPwm();      
-}
-
-void getEncoderStatus(void){
-	leftEncoder = TIM2->CNT;//read current encoder ticks from register of 32 bit general purpose timer 2
-	
-	leftEncoderChange = leftEncoder - leftEncoderOld; 
-	/*if(leftEncoder > 0 && leftEncoder < 10000 && leftEncoderOld > 60000){
-		leftEncoderChange = 0xFFFF - leftEncoderOld + leftEncoder;
-	}*/ //This code solves the problem when the encoder counter overflows and creates a large number => tick in the motor.
-	
-	leftEncoderOld = leftEncoder;
-					
-	leftEncoderCount += leftEncoderChange;
-	
-	distanceLeft -= leftEncoderCount;// update distanceLeft	
-}
-
-
-void updateCurrentSpeed(void){
-	if(curSpeedX < targetSpeedX)
-	{
-		curSpeedX += (float)(speed_to_counts(accX*2)/100);
-		if(curSpeedX > targetSpeedX)
-			curSpeedX = targetSpeedX;
-	}
-	else if(curSpeedX > targetSpeedX)
-	{
-		curSpeedX -= (float)speed_to_counts(decX*2)/100;
-		if(curSpeedX < targetSpeedX)
-			curSpeedX = targetSpeedX;
-	}
-	if(curSpeedW < targetSpeedW)
-	{
-		curSpeedW += accW;
-		if(curSpeedW > targetSpeedW)
-			curSpeedW = targetSpeedW;
-	}
-	else if(curSpeedW > targetSpeedW)
-	{
-		curSpeedW -= decW;
-		if(curSpeedW < targetSpeedW)
-			curSpeedW = targetSpeedW;
-	}	
-}
-
-int saturation(int signal){
-	int value;
-	if(signal > 0xFFFF){
-		value = 0xFFFF;
-	}else if( signal < 0){
-		/* should be running the oposite direction */
-		//Should not happen if it is a unsigned.
-		value = 0x1000;
-	}
-	return value;
-}
-void calculateMotorPwm(void){ // encoder PD controller	
-  /* PD loop to generate base speed*/	
-	encoderFeedbackX = leftEncoderChange;
-	nowSpeed = encoderFeedbackX * 1000.0 / 2096.0 / 19.0 * 3.141592 * 0.04 * 1000; // mm/s
-	speedErrorX = refSpeed - nowSpeed; //Calc error
-	speedPwmX = kpX * speedErrorX + kdX * (speedErrorX - oldSpeedErrorX); //Calc styrsignal
-	
-	oldSpeedErrorX = speedErrorX; // for next iteration
-	
-	TIM3->CCR2 = saturation(speedPwmX); // Adjust the speed
-}
-
 
 
 /* USER CODE END 1 */

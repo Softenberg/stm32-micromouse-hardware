@@ -43,6 +43,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "pwm.h"
+#include "motor_control.h"
 
 /* USER CODE END Includes */
 
@@ -74,10 +76,6 @@ TIM_HandleTypeDef htim4;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-uint32_t encVal;
-int32_t countDiff;
-double speed;
-uint8_t msg[10] = "Hello \n\r";
 
 /* USER CODE END PV */
 
@@ -107,11 +105,6 @@ static void MX_TIM1_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	/*int moveSpeed = speed_to_counts(500*2);           
-	int turnSpeed = speed_to_counts(500*2);
-	int returnSpeed = speed_to_counts(500*2);
-	int stopSpeed = speed_to_counts(100*2);
-	int maxSpeed = speed_to_counts(2000*2);  */
 
   /* USER CODE END 1 */
 
@@ -142,25 +135,11 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
 	
-  /* Start the encoder timer */
-	HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
-	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
+  motorSetup();
 	
-	/*Enable the motor*/
-	HAL_GPIO_WritePin(H_Bridge_Enable_GPIO_Port, H_Bridge_Enable_Pin, GPIO_PIN_SET);
-	/* Right motor -> CW */
-	HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_RESET);
-	/* Left motor -> CCW */
-	HAL_GPIO_WritePin(BIN1_GPIO_Port, BIN1_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(BIN2_GPIO_Port, BIN2_Pin, GPIO_PIN_SET);
-	
-	
-	/* Start PWM timer and spin up the motor to half speed*/
+	/* Start PWM timer*/
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
-	TIM3->CCR2 = 0x8000; /* value between 0 and 2^16(0x0000 - 0xFFFF), where 0xffff is max).*/
-	TIM3->CCR3 = 0x8000;
 	
 	
   /* USER CODE END 2 */
@@ -437,7 +416,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 0;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 0xFFFF;
+  htim3.Init.Period = 999;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
