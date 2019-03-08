@@ -80,6 +80,7 @@ void getEncoderStatus(void){
 	leftEncoderChange = leftEncoder - leftEncoderOld;
 	rightEncoderChange = rightEncoder - rightEncoderOld;
 	
+	/*
 	// The following code is needed because we are only using 16 bit timers which overflows alot with our high res. encoders.
 	if(targetSpeedX > 0 && leftEncoderChange < 0){
 		//We are suppose to be moving forward but we overflowed the counter and it thinks we are moing in the wrong direction.
@@ -99,7 +100,7 @@ void getEncoderStatus(void){
 		rightEncoderChange = rightEncoder - 0xFFFF - rightEncoderOld;
 		rRevCorrVal = rightEncoderChange;
 		reverseCorrection++;
-	}
+	}*/
 	
 	encoderChange = (leftEncoderChange + rightEncoderChange)/2;	 
 
