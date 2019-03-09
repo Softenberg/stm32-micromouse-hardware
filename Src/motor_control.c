@@ -108,8 +108,8 @@ void getEncoderStatus(void){
 
 void updateCurrentSpeed(void){
 	if(curSpeedX < targetSpeedX){
-		curSpeedX += (float)speedToCounts(accX*2)/1000; //Original was 100, not 1000, don't know what is correct
-		if(curSpeedX > targetSpeedX)		// 100 was original since accW was in cm/s^2 and not mm/s^2
+		curSpeedX += (float)speedToCounts(accX*2)/1000;// /100 was original since accW was in cm/s^2 and not mm/s^2
+		if(curSpeedX > targetSpeedX)		
 			curSpeedX = targetSpeedX;
 	}else if(curSpeedX > targetSpeedX){
 		curSpeedX -= (float)speedToCounts(decX*2)/1000;
@@ -143,8 +143,8 @@ void calculateMotorPwm(void){ // encoder PD controller
 
 	
 	//Removed += to = sign to only do velocity control.
-	posErrorX = curSpeedX - encoderFeedbackX;
-	posErrorW = curSpeedW - rotationalFeedback;
+	posErrorX += curSpeedX - encoderFeedbackX;
+	posErrorW += curSpeedW - rotationalFeedback;
 	
 	posPwmX = kpX * posErrorX + kdX * (posErrorX - oldPosErrorX);
 	posPwmW = kpW * posErrorW + kdW * (posErrorW - oldPosErrorW);
@@ -158,21 +158,4 @@ void calculateMotorPwm(void){ // encoder PD controller
 	setLeftPWM(leftBaseSpeed);
 	setRightPWM(rightBaseSpeed);
 }
-
-
-
-/**
-
-	* @brief This function converts a speed/acceleration to counts/time
-	* @param Speed or Acceleration in cm/s or cm/s^2
-	* @return Speed or Acceleration in counts/ms
-*/
-/*
-int speed_to_counts(int speed){
-	// / (3.141592*4) - cm/s => varv/s (omkrets = PI * diameter (4cm))
-	// / 1000 - varv/s => varv/ms
-	// * 2096 * 19 - varv/ms => counts/ms (2096 counts per motor varv, 19:1 i utväxling.)
-	return  speed / (3.141592 * 4.0) / 1000.0 * 2096.0 * 19.0;
-}
-*/
 
