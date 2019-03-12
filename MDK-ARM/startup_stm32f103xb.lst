@@ -250,249 +250,250 @@ ARM Macro Assembler    Page 4
 ]
   148 00000000                 IMPORT           __main
   149 00000000                 IMPORT           SystemInit
-  150 00000000 4806            LDR              R0, =SystemInit
-  151 00000002 4780            BLX              R0
-  152 00000004 4806            LDR              R0, =__main
-  153 00000006 4700            BX               R0
-  154 00000008                 ENDP
-  155 00000008         
-  156 00000008         ; Dummy Exception Handlers (infinite loops which can be 
-                       modified)
+  150 00000000         
+  151 00000000 4806            LDR              R0, =SystemInit
+  152 00000002 4780            BLX              R0
+  153 00000004 4806            LDR              R0, =__main
+  154 00000006 4700            BX               R0
+  155 00000008                 ENDP
+  156 00000008         
+  157 00000008         ; Dummy Exception Handlers (infinite loops which can be 
 
 
 
 ARM Macro Assembler    Page 5 
 
 
-  157 00000008         
-  158 00000008         NMI_Handler
+                       modified)
+  158 00000008         
+  159 00000008         NMI_Handler
                                PROC
-  159 00000008                 EXPORT           NMI_Handler                [WEA
+  160 00000008                 EXPORT           NMI_Handler                [WEA
 K]
-  160 00000008 E7FE            B                .
-  161 0000000A                 ENDP
-  163 0000000A         HardFault_Handler
+  161 00000008 E7FE            B                .
+  162 0000000A                 ENDP
+  164 0000000A         HardFault_Handler
                                PROC
-  164 0000000A                 EXPORT           HardFault_Handler          [WEA
+  165 0000000A                 EXPORT           HardFault_Handler          [WEA
 K]
-  165 0000000A E7FE            B                .
-  166 0000000C                 ENDP
-  168 0000000C         MemManage_Handler
+  166 0000000A E7FE            B                .
+  167 0000000C                 ENDP
+  169 0000000C         MemManage_Handler
                                PROC
-  169 0000000C                 EXPORT           MemManage_Handler          [WEA
+  170 0000000C                 EXPORT           MemManage_Handler          [WEA
 K]
-  170 0000000C E7FE            B                .
-  171 0000000E                 ENDP
-  173 0000000E         BusFault_Handler
+  171 0000000C E7FE            B                .
+  172 0000000E                 ENDP
+  174 0000000E         BusFault_Handler
                                PROC
-  174 0000000E                 EXPORT           BusFault_Handler           [WEA
+  175 0000000E                 EXPORT           BusFault_Handler           [WEA
 K]
-  175 0000000E E7FE            B                .
-  176 00000010                 ENDP
-  178 00000010         UsageFault_Handler
+  176 0000000E E7FE            B                .
+  177 00000010                 ENDP
+  179 00000010         UsageFault_Handler
                                PROC
-  179 00000010                 EXPORT           UsageFault_Handler         [WEA
+  180 00000010                 EXPORT           UsageFault_Handler         [WEA
 K]
-  180 00000010 E7FE            B                .
-  181 00000012                 ENDP
-  182 00000012         SVC_Handler
+  181 00000010 E7FE            B                .
+  182 00000012                 ENDP
+  183 00000012         SVC_Handler
                                PROC
-  183 00000012                 EXPORT           SVC_Handler                [WEA
+  184 00000012                 EXPORT           SVC_Handler                [WEA
 K]
-  184 00000012 E7FE            B                .
-  185 00000014                 ENDP
-  187 00000014         DebugMon_Handler
+  185 00000012 E7FE            B                .
+  186 00000014                 ENDP
+  188 00000014         DebugMon_Handler
                                PROC
-  188 00000014                 EXPORT           DebugMon_Handler           [WEA
+  189 00000014                 EXPORT           DebugMon_Handler           [WEA
 K]
-  189 00000014 E7FE            B                .
-  190 00000016                 ENDP
-  191 00000016         PendSV_Handler
+  190 00000014 E7FE            B                .
+  191 00000016                 ENDP
+  192 00000016         PendSV_Handler
                                PROC
-  192 00000016                 EXPORT           PendSV_Handler             [WEA
+  193 00000016                 EXPORT           PendSV_Handler             [WEA
 K]
-  193 00000016 E7FE            B                .
-  194 00000018                 ENDP
-  195 00000018         SysTick_Handler
+  194 00000016 E7FE            B                .
+  195 00000018                 ENDP
+  196 00000018         SysTick_Handler
                                PROC
-  196 00000018                 EXPORT           SysTick_Handler            [WEA
+  197 00000018                 EXPORT           SysTick_Handler            [WEA
 K]
-  197 00000018 E7FE            B                .
-  198 0000001A                 ENDP
-  199 0000001A         
-  200 0000001A         Default_Handler
+  198 00000018 E7FE            B                .
+  199 0000001A                 ENDP
+  200 0000001A         
+  201 0000001A         Default_Handler
                                PROC
-  201 0000001A         
 
 
 
 ARM Macro Assembler    Page 6 
 
 
-  202 0000001A                 EXPORT           WWDG_IRQHandler            [WEA
+  202 0000001A         
+  203 0000001A                 EXPORT           WWDG_IRQHandler            [WEA
 K]
-  203 0000001A                 EXPORT           PVD_IRQHandler             [WEA
+  204 0000001A                 EXPORT           PVD_IRQHandler             [WEA
 K]
-  204 0000001A                 EXPORT           TAMPER_IRQHandler          [WEA
+  205 0000001A                 EXPORT           TAMPER_IRQHandler          [WEA
 K]
-  205 0000001A                 EXPORT           RTC_IRQHandler             [WEA
+  206 0000001A                 EXPORT           RTC_IRQHandler             [WEA
 K]
-  206 0000001A                 EXPORT           FLASH_IRQHandler           [WEA
+  207 0000001A                 EXPORT           FLASH_IRQHandler           [WEA
 K]
-  207 0000001A                 EXPORT           RCC_IRQHandler             [WEA
+  208 0000001A                 EXPORT           RCC_IRQHandler             [WEA
 K]
-  208 0000001A                 EXPORT           EXTI0_IRQHandler           [WEA
+  209 0000001A                 EXPORT           EXTI0_IRQHandler           [WEA
 K]
-  209 0000001A                 EXPORT           EXTI1_IRQHandler           [WEA
+  210 0000001A                 EXPORT           EXTI1_IRQHandler           [WEA
 K]
-  210 0000001A                 EXPORT           EXTI2_IRQHandler           [WEA
+  211 0000001A                 EXPORT           EXTI2_IRQHandler           [WEA
 K]
-  211 0000001A                 EXPORT           EXTI3_IRQHandler           [WEA
+  212 0000001A                 EXPORT           EXTI3_IRQHandler           [WEA
 K]
-  212 0000001A                 EXPORT           EXTI4_IRQHandler           [WEA
+  213 0000001A                 EXPORT           EXTI4_IRQHandler           [WEA
 K]
-  213 0000001A                 EXPORT           DMA1_Channel1_IRQHandler   [WEA
+  214 0000001A                 EXPORT           DMA1_Channel1_IRQHandler   [WEA
 K]
-  214 0000001A                 EXPORT           DMA1_Channel2_IRQHandler   [WEA
+  215 0000001A                 EXPORT           DMA1_Channel2_IRQHandler   [WEA
 K]
-  215 0000001A                 EXPORT           DMA1_Channel3_IRQHandler   [WEA
+  216 0000001A                 EXPORT           DMA1_Channel3_IRQHandler   [WEA
 K]
-  216 0000001A                 EXPORT           DMA1_Channel4_IRQHandler   [WEA
+  217 0000001A                 EXPORT           DMA1_Channel4_IRQHandler   [WEA
 K]
-  217 0000001A                 EXPORT           DMA1_Channel5_IRQHandler   [WEA
+  218 0000001A                 EXPORT           DMA1_Channel5_IRQHandler   [WEA
 K]
-  218 0000001A                 EXPORT           DMA1_Channel6_IRQHandler   [WEA
+  219 0000001A                 EXPORT           DMA1_Channel6_IRQHandler   [WEA
 K]
-  219 0000001A                 EXPORT           DMA1_Channel7_IRQHandler   [WEA
+  220 0000001A                 EXPORT           DMA1_Channel7_IRQHandler   [WEA
 K]
-  220 0000001A                 EXPORT           ADC1_2_IRQHandler          [WEA
+  221 0000001A                 EXPORT           ADC1_2_IRQHandler          [WEA
 K]
-  221 0000001A                 EXPORT           USB_HP_CAN1_TX_IRQHandler  [WEA
+  222 0000001A                 EXPORT           USB_HP_CAN1_TX_IRQHandler  [WEA
 K]
-  222 0000001A                 EXPORT           USB_LP_CAN1_RX0_IRQHandler [WEA
+  223 0000001A                 EXPORT           USB_LP_CAN1_RX0_IRQHandler [WEA
 K]
-  223 0000001A                 EXPORT           CAN1_RX1_IRQHandler        [WEA
+  224 0000001A                 EXPORT           CAN1_RX1_IRQHandler        [WEA
 K]
-  224 0000001A                 EXPORT           CAN1_SCE_IRQHandler        [WEA
+  225 0000001A                 EXPORT           CAN1_SCE_IRQHandler        [WEA
 K]
-  225 0000001A                 EXPORT           EXTI9_5_IRQHandler         [WEA
+  226 0000001A                 EXPORT           EXTI9_5_IRQHandler         [WEA
 K]
-  226 0000001A                 EXPORT           TIM1_BRK_IRQHandler        [WEA
+  227 0000001A                 EXPORT           TIM1_BRK_IRQHandler        [WEA
 K]
-  227 0000001A                 EXPORT           TIM1_UP_IRQHandler         [WEA
+  228 0000001A                 EXPORT           TIM1_UP_IRQHandler         [WEA
 K]
-  228 0000001A                 EXPORT           TIM1_TRG_COM_IRQHandler    [WEA
+  229 0000001A                 EXPORT           TIM1_TRG_COM_IRQHandler    [WEA
 K]
-  229 0000001A                 EXPORT           TIM1_CC_IRQHandler         [WEA
+  230 0000001A                 EXPORT           TIM1_CC_IRQHandler         [WEA
 K]
-  230 0000001A                 EXPORT           TIM2_IRQHandler            [WEA
+  231 0000001A                 EXPORT           TIM2_IRQHandler            [WEA
 K]
-  231 0000001A                 EXPORT           TIM3_IRQHandler            [WEA
 
 
 
 ARM Macro Assembler    Page 7 
 
 
+  232 0000001A                 EXPORT           TIM3_IRQHandler            [WEA
 K]
-  232 0000001A                 EXPORT           TIM4_IRQHandler            [WEA
+  233 0000001A                 EXPORT           TIM4_IRQHandler            [WEA
 K]
-  233 0000001A                 EXPORT           I2C1_EV_IRQHandler         [WEA
+  234 0000001A                 EXPORT           I2C1_EV_IRQHandler         [WEA
 K]
-  234 0000001A                 EXPORT           I2C1_ER_IRQHandler         [WEA
+  235 0000001A                 EXPORT           I2C1_ER_IRQHandler         [WEA
 K]
-  235 0000001A                 EXPORT           I2C2_EV_IRQHandler         [WEA
+  236 0000001A                 EXPORT           I2C2_EV_IRQHandler         [WEA
 K]
-  236 0000001A                 EXPORT           I2C2_ER_IRQHandler         [WEA
+  237 0000001A                 EXPORT           I2C2_ER_IRQHandler         [WEA
 K]
-  237 0000001A                 EXPORT           SPI1_IRQHandler            [WEA
+  238 0000001A                 EXPORT           SPI1_IRQHandler            [WEA
 K]
-  238 0000001A                 EXPORT           SPI2_IRQHandler            [WEA
+  239 0000001A                 EXPORT           SPI2_IRQHandler            [WEA
 K]
-  239 0000001A                 EXPORT           USART1_IRQHandler          [WEA
+  240 0000001A                 EXPORT           USART1_IRQHandler          [WEA
 K]
-  240 0000001A                 EXPORT           USART2_IRQHandler          [WEA
+  241 0000001A                 EXPORT           USART2_IRQHandler          [WEA
 K]
-  241 0000001A                 EXPORT           USART3_IRQHandler          [WEA
+  242 0000001A                 EXPORT           USART3_IRQHandler          [WEA
 K]
-  242 0000001A                 EXPORT           EXTI15_10_IRQHandler       [WEA
+  243 0000001A                 EXPORT           EXTI15_10_IRQHandler       [WEA
 K]
-  243 0000001A                 EXPORT           RTC_Alarm_IRQHandler        [WE
+  244 0000001A                 EXPORT           RTC_Alarm_IRQHandler        [WE
 AK]
-  244 0000001A                 EXPORT           USBWakeUp_IRQHandler       [WEA
+  245 0000001A                 EXPORT           USBWakeUp_IRQHandler       [WEA
 K]
-  245 0000001A         
-  246 0000001A         WWDG_IRQHandler
-  247 0000001A         PVD_IRQHandler
-  248 0000001A         TAMPER_IRQHandler
-  249 0000001A         RTC_IRQHandler
-  250 0000001A         FLASH_IRQHandler
-  251 0000001A         RCC_IRQHandler
-  252 0000001A         EXTI0_IRQHandler
-  253 0000001A         EXTI1_IRQHandler
-  254 0000001A         EXTI2_IRQHandler
-  255 0000001A         EXTI3_IRQHandler
-  256 0000001A         EXTI4_IRQHandler
-  257 0000001A         DMA1_Channel1_IRQHandler
-  258 0000001A         DMA1_Channel2_IRQHandler
-  259 0000001A         DMA1_Channel3_IRQHandler
-  260 0000001A         DMA1_Channel4_IRQHandler
-  261 0000001A         DMA1_Channel5_IRQHandler
-  262 0000001A         DMA1_Channel6_IRQHandler
-  263 0000001A         DMA1_Channel7_IRQHandler
-  264 0000001A         ADC1_2_IRQHandler
-  265 0000001A         USB_HP_CAN1_TX_IRQHandler
-  266 0000001A         USB_LP_CAN1_RX0_IRQHandler
-  267 0000001A         CAN1_RX1_IRQHandler
-  268 0000001A         CAN1_SCE_IRQHandler
-  269 0000001A         EXTI9_5_IRQHandler
-  270 0000001A         TIM1_BRK_IRQHandler
-  271 0000001A         TIM1_UP_IRQHandler
-  272 0000001A         TIM1_TRG_COM_IRQHandler
-  273 0000001A         TIM1_CC_IRQHandler
-  274 0000001A         TIM2_IRQHandler
-  275 0000001A         TIM3_IRQHandler
-  276 0000001A         TIM4_IRQHandler
+  246 0000001A         
+  247 0000001A         WWDG_IRQHandler
+  248 0000001A         PVD_IRQHandler
+  249 0000001A         TAMPER_IRQHandler
+  250 0000001A         RTC_IRQHandler
+  251 0000001A         FLASH_IRQHandler
+  252 0000001A         RCC_IRQHandler
+  253 0000001A         EXTI0_IRQHandler
+  254 0000001A         EXTI1_IRQHandler
+  255 0000001A         EXTI2_IRQHandler
+  256 0000001A         EXTI3_IRQHandler
+  257 0000001A         EXTI4_IRQHandler
+  258 0000001A         DMA1_Channel1_IRQHandler
+  259 0000001A         DMA1_Channel2_IRQHandler
+  260 0000001A         DMA1_Channel3_IRQHandler
+  261 0000001A         DMA1_Channel4_IRQHandler
+  262 0000001A         DMA1_Channel5_IRQHandler
+  263 0000001A         DMA1_Channel6_IRQHandler
+  264 0000001A         DMA1_Channel7_IRQHandler
+  265 0000001A         ADC1_2_IRQHandler
+  266 0000001A         USB_HP_CAN1_TX_IRQHandler
+  267 0000001A         USB_LP_CAN1_RX0_IRQHandler
+  268 0000001A         CAN1_RX1_IRQHandler
+  269 0000001A         CAN1_SCE_IRQHandler
+  270 0000001A         EXTI9_5_IRQHandler
+  271 0000001A         TIM1_BRK_IRQHandler
+  272 0000001A         TIM1_UP_IRQHandler
+  273 0000001A         TIM1_TRG_COM_IRQHandler
+  274 0000001A         TIM1_CC_IRQHandler
+  275 0000001A         TIM2_IRQHandler
+  276 0000001A         TIM3_IRQHandler
 
 
 
 ARM Macro Assembler    Page 8 
 
 
-  277 0000001A         I2C1_EV_IRQHandler
-  278 0000001A         I2C1_ER_IRQHandler
-  279 0000001A         I2C2_EV_IRQHandler
-  280 0000001A         I2C2_ER_IRQHandler
-  281 0000001A         SPI1_IRQHandler
-  282 0000001A         SPI2_IRQHandler
-  283 0000001A         USART1_IRQHandler
-  284 0000001A         USART2_IRQHandler
-  285 0000001A         USART3_IRQHandler
-  286 0000001A         EXTI15_10_IRQHandler
-  287 0000001A         RTC_Alarm_IRQHandler
-  288 0000001A         USBWakeUp_IRQHandler
-  289 0000001A         
-  290 0000001A E7FE            B                .
-  291 0000001C         
-  292 0000001C                 ENDP
-  293 0000001C         
-  294 0000001C                 ALIGN
-  295 0000001C         
-  296 0000001C         ;*******************************************************
+  277 0000001A         TIM4_IRQHandler
+  278 0000001A         I2C1_EV_IRQHandler
+  279 0000001A         I2C1_ER_IRQHandler
+  280 0000001A         I2C2_EV_IRQHandler
+  281 0000001A         I2C2_ER_IRQHandler
+  282 0000001A         SPI1_IRQHandler
+  283 0000001A         SPI2_IRQHandler
+  284 0000001A         USART1_IRQHandler
+  285 0000001A         USART2_IRQHandler
+  286 0000001A         USART3_IRQHandler
+  287 0000001A         EXTI15_10_IRQHandler
+  288 0000001A         RTC_Alarm_IRQHandler
+  289 0000001A         USBWakeUp_IRQHandler
+  290 0000001A         
+  291 0000001A E7FE            B                .
+  292 0000001C         
+  293 0000001C                 ENDP
+  294 0000001C         
+  295 0000001C                 ALIGN
+  296 0000001C         
+  297 0000001C         ;*******************************************************
                        ************************
-  297 0000001C         ; User Stack and Heap initialization
-  298 0000001C         ;*******************************************************
+  298 0000001C         ; User Stack and Heap initialization
+  299 0000001C         ;*******************************************************
                        ************************
-  299 0000001C                 IF               :DEF:__MICROLIB
-  300 0000001C         
-  301 0000001C                 EXPORT           __initial_sp
-  302 0000001C                 EXPORT           __heap_base
-  303 0000001C                 EXPORT           __heap_limit
-  304 0000001C         
-  305 0000001C                 ELSE
-  320                          ENDIF
-  321 0000001C         
-  322 0000001C                 END
+  300 0000001C                 IF               :DEF:__MICROLIB
+  301 0000001C         
+  302 0000001C                 EXPORT           __initial_sp
+  303 0000001C                 EXPORT           __heap_base
+  304 0000001C                 EXPORT           __heap_limit
+  305 0000001C         
+  306 0000001C                 ELSE
+  321                          ENDIF
+  322 0000001C         
+  323 0000001C                 END
               00000000 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
@@ -531,7 +532,7 @@ Symbol: __initial_sp
       At line 54 in file startup_stm32f103xb.s
    Uses
       At line 78 in file startup_stm32f103xb.s
-      At line 301 in file startup_stm32f103xb.s
+      At line 302 in file startup_stm32f103xb.s
 
 3 symbols
 
@@ -562,7 +563,7 @@ Symbol: __heap_base
    Definitions
       At line 64 in file startup_stm32f103xb.s
    Uses
-      At line 302 in file startup_stm32f103xb.s
+      At line 303 in file startup_stm32f103xb.s
 Comment: __heap_base used once
 __heap_limit 00000200
 
@@ -570,7 +571,7 @@ Symbol: __heap_limit
    Definitions
       At line 66 in file startup_stm32f103xb.s
    Uses
-      At line 303 in file startup_stm32f103xb.s
+      At line 304 in file startup_stm32f103xb.s
 Comment: __heap_limit used once
 4 symbols
 
@@ -624,52 +625,52 @@ ADC1_2_IRQHandler 0000001A
 
 Symbol: ADC1_2_IRQHandler
    Definitions
-      At line 264 in file startup_stm32f103xb.s
+      At line 265 in file startup_stm32f103xb.s
    Uses
       At line 114 in file startup_stm32f103xb.s
-      At line 220 in file startup_stm32f103xb.s
+      At line 221 in file startup_stm32f103xb.s
 
 BusFault_Handler 0000000E
 
 Symbol: BusFault_Handler
    Definitions
-      At line 173 in file startup_stm32f103xb.s
+      At line 174 in file startup_stm32f103xb.s
    Uses
       At line 83 in file startup_stm32f103xb.s
-      At line 174 in file startup_stm32f103xb.s
+      At line 175 in file startup_stm32f103xb.s
 
 CAN1_RX1_IRQHandler 0000001A
 
 Symbol: CAN1_RX1_IRQHandler
    Definitions
-      At line 267 in file startup_stm32f103xb.s
+      At line 268 in file startup_stm32f103xb.s
    Uses
       At line 117 in file startup_stm32f103xb.s
-      At line 223 in file startup_stm32f103xb.s
+      At line 224 in file startup_stm32f103xb.s
 
 CAN1_SCE_IRQHandler 0000001A
 
 Symbol: CAN1_SCE_IRQHandler
    Definitions
-      At line 268 in file startup_stm32f103xb.s
+      At line 269 in file startup_stm32f103xb.s
    Uses
       At line 118 in file startup_stm32f103xb.s
-      At line 224 in file startup_stm32f103xb.s
+      At line 225 in file startup_stm32f103xb.s
 
 DMA1_Channel1_IRQHandler 0000001A
 
 Symbol: DMA1_Channel1_IRQHandler
    Definitions
-      At line 257 in file startup_stm32f103xb.s
+      At line 258 in file startup_stm32f103xb.s
    Uses
       At line 107 in file startup_stm32f103xb.s
-      At line 213 in file startup_stm32f103xb.s
+      At line 214 in file startup_stm32f103xb.s
 
 DMA1_Channel2_IRQHandler 0000001A
 
 Symbol: DMA1_Channel2_IRQHandler
    Definitions
-      At line 258 in file startup_stm32f103xb.s
+      At line 259 in file startup_stm32f103xb.s
    Uses
 
 
@@ -678,61 +679,61 @@ ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Relocatable symbols
 
       At line 108 in file startup_stm32f103xb.s
-      At line 214 in file startup_stm32f103xb.s
+      At line 215 in file startup_stm32f103xb.s
 
 DMA1_Channel3_IRQHandler 0000001A
 
 Symbol: DMA1_Channel3_IRQHandler
    Definitions
-      At line 259 in file startup_stm32f103xb.s
+      At line 260 in file startup_stm32f103xb.s
    Uses
       At line 109 in file startup_stm32f103xb.s
-      At line 215 in file startup_stm32f103xb.s
+      At line 216 in file startup_stm32f103xb.s
 
 DMA1_Channel4_IRQHandler 0000001A
 
 Symbol: DMA1_Channel4_IRQHandler
    Definitions
-      At line 260 in file startup_stm32f103xb.s
+      At line 261 in file startup_stm32f103xb.s
    Uses
       At line 110 in file startup_stm32f103xb.s
-      At line 216 in file startup_stm32f103xb.s
+      At line 217 in file startup_stm32f103xb.s
 
 DMA1_Channel5_IRQHandler 0000001A
 
 Symbol: DMA1_Channel5_IRQHandler
    Definitions
-      At line 261 in file startup_stm32f103xb.s
+      At line 262 in file startup_stm32f103xb.s
    Uses
       At line 111 in file startup_stm32f103xb.s
-      At line 217 in file startup_stm32f103xb.s
+      At line 218 in file startup_stm32f103xb.s
 
 DMA1_Channel6_IRQHandler 0000001A
 
 Symbol: DMA1_Channel6_IRQHandler
    Definitions
-      At line 262 in file startup_stm32f103xb.s
+      At line 263 in file startup_stm32f103xb.s
    Uses
       At line 112 in file startup_stm32f103xb.s
-      At line 218 in file startup_stm32f103xb.s
+      At line 219 in file startup_stm32f103xb.s
 
 DMA1_Channel7_IRQHandler 0000001A
 
 Symbol: DMA1_Channel7_IRQHandler
    Definitions
-      At line 263 in file startup_stm32f103xb.s
+      At line 264 in file startup_stm32f103xb.s
    Uses
       At line 113 in file startup_stm32f103xb.s
-      At line 219 in file startup_stm32f103xb.s
+      At line 220 in file startup_stm32f103xb.s
 
 DebugMon_Handler 00000014
 
 Symbol: DebugMon_Handler
    Definitions
-      At line 187 in file startup_stm32f103xb.s
+      At line 188 in file startup_stm32f103xb.s
    Uses
       At line 90 in file startup_stm32f103xb.s
-      At line 188 in file startup_stm32f103xb.s
+      At line 189 in file startup_stm32f103xb.s
 
 Default_Handler 0000001A
 
@@ -744,7 +745,7 @@ Relocatable symbols
 
 Symbol: Default_Handler
    Definitions
-      At line 200 in file startup_stm32f103xb.s
+      At line 201 in file startup_stm32f103xb.s
    Uses
       None
 Comment: Default_Handler unused
@@ -752,55 +753,55 @@ EXTI0_IRQHandler 0000001A
 
 Symbol: EXTI0_IRQHandler
    Definitions
-      At line 252 in file startup_stm32f103xb.s
+      At line 253 in file startup_stm32f103xb.s
    Uses
       At line 102 in file startup_stm32f103xb.s
-      At line 208 in file startup_stm32f103xb.s
+      At line 209 in file startup_stm32f103xb.s
 
 EXTI15_10_IRQHandler 0000001A
 
 Symbol: EXTI15_10_IRQHandler
    Definitions
-      At line 286 in file startup_stm32f103xb.s
+      At line 287 in file startup_stm32f103xb.s
    Uses
       At line 136 in file startup_stm32f103xb.s
-      At line 242 in file startup_stm32f103xb.s
+      At line 243 in file startup_stm32f103xb.s
 
 EXTI1_IRQHandler 0000001A
 
 Symbol: EXTI1_IRQHandler
    Definitions
-      At line 253 in file startup_stm32f103xb.s
+      At line 254 in file startup_stm32f103xb.s
    Uses
       At line 103 in file startup_stm32f103xb.s
-      At line 209 in file startup_stm32f103xb.s
+      At line 210 in file startup_stm32f103xb.s
 
 EXTI2_IRQHandler 0000001A
 
 Symbol: EXTI2_IRQHandler
    Definitions
-      At line 254 in file startup_stm32f103xb.s
+      At line 255 in file startup_stm32f103xb.s
    Uses
       At line 104 in file startup_stm32f103xb.s
-      At line 210 in file startup_stm32f103xb.s
+      At line 211 in file startup_stm32f103xb.s
 
 EXTI3_IRQHandler 0000001A
 
 Symbol: EXTI3_IRQHandler
    Definitions
-      At line 255 in file startup_stm32f103xb.s
+      At line 256 in file startup_stm32f103xb.s
    Uses
       At line 105 in file startup_stm32f103xb.s
-      At line 211 in file startup_stm32f103xb.s
+      At line 212 in file startup_stm32f103xb.s
 
 EXTI4_IRQHandler 0000001A
 
 Symbol: EXTI4_IRQHandler
    Definitions
-      At line 256 in file startup_stm32f103xb.s
+      At line 257 in file startup_stm32f103xb.s
    Uses
       At line 106 in file startup_stm32f103xb.s
-      At line 212 in file startup_stm32f103xb.s
+      At line 213 in file startup_stm32f103xb.s
 
 
 
@@ -812,55 +813,55 @@ EXTI9_5_IRQHandler 0000001A
 
 Symbol: EXTI9_5_IRQHandler
    Definitions
-      At line 269 in file startup_stm32f103xb.s
+      At line 270 in file startup_stm32f103xb.s
    Uses
       At line 119 in file startup_stm32f103xb.s
-      At line 225 in file startup_stm32f103xb.s
+      At line 226 in file startup_stm32f103xb.s
 
 FLASH_IRQHandler 0000001A
 
 Symbol: FLASH_IRQHandler
    Definitions
-      At line 250 in file startup_stm32f103xb.s
+      At line 251 in file startup_stm32f103xb.s
    Uses
       At line 100 in file startup_stm32f103xb.s
-      At line 206 in file startup_stm32f103xb.s
+      At line 207 in file startup_stm32f103xb.s
 
 HardFault_Handler 0000000A
 
 Symbol: HardFault_Handler
    Definitions
-      At line 163 in file startup_stm32f103xb.s
+      At line 164 in file startup_stm32f103xb.s
    Uses
       At line 81 in file startup_stm32f103xb.s
-      At line 164 in file startup_stm32f103xb.s
+      At line 165 in file startup_stm32f103xb.s
 
 I2C1_ER_IRQHandler 0000001A
 
 Symbol: I2C1_ER_IRQHandler
    Definitions
-      At line 278 in file startup_stm32f103xb.s
+      At line 279 in file startup_stm32f103xb.s
    Uses
       At line 128 in file startup_stm32f103xb.s
-      At line 234 in file startup_stm32f103xb.s
+      At line 235 in file startup_stm32f103xb.s
 
 I2C1_EV_IRQHandler 0000001A
 
 Symbol: I2C1_EV_IRQHandler
    Definitions
-      At line 277 in file startup_stm32f103xb.s
+      At line 278 in file startup_stm32f103xb.s
    Uses
       At line 127 in file startup_stm32f103xb.s
-      At line 233 in file startup_stm32f103xb.s
+      At line 234 in file startup_stm32f103xb.s
 
 I2C2_ER_IRQHandler 0000001A
 
 Symbol: I2C2_ER_IRQHandler
    Definitions
-      At line 280 in file startup_stm32f103xb.s
+      At line 281 in file startup_stm32f103xb.s
    Uses
       At line 130 in file startup_stm32f103xb.s
-      At line 236 in file startup_stm32f103xb.s
+      At line 237 in file startup_stm32f103xb.s
 
 I2C2_EV_IRQHandler 0000001A
 
@@ -872,64 +873,64 @@ Symbol: I2C2_EV_IRQHandler
 ARM Macro Assembler    Page 5 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 279 in file startup_stm32f103xb.s
+      At line 280 in file startup_stm32f103xb.s
    Uses
       At line 129 in file startup_stm32f103xb.s
-      At line 235 in file startup_stm32f103xb.s
+      At line 236 in file startup_stm32f103xb.s
 
 MemManage_Handler 0000000C
 
 Symbol: MemManage_Handler
    Definitions
-      At line 168 in file startup_stm32f103xb.s
+      At line 169 in file startup_stm32f103xb.s
    Uses
       At line 82 in file startup_stm32f103xb.s
-      At line 169 in file startup_stm32f103xb.s
+      At line 170 in file startup_stm32f103xb.s
 
 NMI_Handler 00000008
 
 Symbol: NMI_Handler
    Definitions
-      At line 158 in file startup_stm32f103xb.s
+      At line 159 in file startup_stm32f103xb.s
    Uses
       At line 80 in file startup_stm32f103xb.s
-      At line 159 in file startup_stm32f103xb.s
+      At line 160 in file startup_stm32f103xb.s
 
 PVD_IRQHandler 0000001A
 
 Symbol: PVD_IRQHandler
    Definitions
-      At line 247 in file startup_stm32f103xb.s
+      At line 248 in file startup_stm32f103xb.s
    Uses
       At line 97 in file startup_stm32f103xb.s
-      At line 203 in file startup_stm32f103xb.s
+      At line 204 in file startup_stm32f103xb.s
 
 PendSV_Handler 00000016
 
 Symbol: PendSV_Handler
    Definitions
-      At line 191 in file startup_stm32f103xb.s
+      At line 192 in file startup_stm32f103xb.s
    Uses
       At line 92 in file startup_stm32f103xb.s
-      At line 192 in file startup_stm32f103xb.s
+      At line 193 in file startup_stm32f103xb.s
 
 RCC_IRQHandler 0000001A
 
 Symbol: RCC_IRQHandler
    Definitions
-      At line 251 in file startup_stm32f103xb.s
+      At line 252 in file startup_stm32f103xb.s
    Uses
       At line 101 in file startup_stm32f103xb.s
-      At line 207 in file startup_stm32f103xb.s
+      At line 208 in file startup_stm32f103xb.s
 
 RTC_Alarm_IRQHandler 0000001A
 
 Symbol: RTC_Alarm_IRQHandler
    Definitions
-      At line 287 in file startup_stm32f103xb.s
+      At line 288 in file startup_stm32f103xb.s
    Uses
       At line 137 in file startup_stm32f103xb.s
-      At line 243 in file startup_stm32f103xb.s
+      At line 244 in file startup_stm32f103xb.s
 
 
 
@@ -941,10 +942,10 @@ RTC_IRQHandler 0000001A
 
 Symbol: RTC_IRQHandler
    Definitions
-      At line 249 in file startup_stm32f103xb.s
+      At line 250 in file startup_stm32f103xb.s
    Uses
       At line 99 in file startup_stm32f103xb.s
-      At line 205 in file startup_stm32f103xb.s
+      At line 206 in file startup_stm32f103xb.s
 
 Reset_Handler 00000000
 
@@ -959,43 +960,43 @@ SPI1_IRQHandler 0000001A
 
 Symbol: SPI1_IRQHandler
    Definitions
-      At line 281 in file startup_stm32f103xb.s
+      At line 282 in file startup_stm32f103xb.s
    Uses
       At line 131 in file startup_stm32f103xb.s
-      At line 237 in file startup_stm32f103xb.s
+      At line 238 in file startup_stm32f103xb.s
 
 SPI2_IRQHandler 0000001A
 
 Symbol: SPI2_IRQHandler
    Definitions
-      At line 282 in file startup_stm32f103xb.s
+      At line 283 in file startup_stm32f103xb.s
    Uses
       At line 132 in file startup_stm32f103xb.s
-      At line 238 in file startup_stm32f103xb.s
+      At line 239 in file startup_stm32f103xb.s
 
 SVC_Handler 00000012
 
 Symbol: SVC_Handler
    Definitions
-      At line 182 in file startup_stm32f103xb.s
+      At line 183 in file startup_stm32f103xb.s
    Uses
       At line 89 in file startup_stm32f103xb.s
-      At line 183 in file startup_stm32f103xb.s
+      At line 184 in file startup_stm32f103xb.s
 
 SysTick_Handler 00000018
 
 Symbol: SysTick_Handler
    Definitions
-      At line 195 in file startup_stm32f103xb.s
+      At line 196 in file startup_stm32f103xb.s
    Uses
       At line 93 in file startup_stm32f103xb.s
-      At line 196 in file startup_stm32f103xb.s
+      At line 197 in file startup_stm32f103xb.s
 
 TAMPER_IRQHandler 0000001A
 
 Symbol: TAMPER_IRQHandler
    Definitions
-      At line 248 in file startup_stm32f103xb.s
+      At line 249 in file startup_stm32f103xb.s
 
 
 
@@ -1004,61 +1005,61 @@ Relocatable symbols
 
    Uses
       At line 98 in file startup_stm32f103xb.s
-      At line 204 in file startup_stm32f103xb.s
+      At line 205 in file startup_stm32f103xb.s
 
 TIM1_BRK_IRQHandler 0000001A
 
 Symbol: TIM1_BRK_IRQHandler
    Definitions
-      At line 270 in file startup_stm32f103xb.s
+      At line 271 in file startup_stm32f103xb.s
    Uses
       At line 120 in file startup_stm32f103xb.s
-      At line 226 in file startup_stm32f103xb.s
+      At line 227 in file startup_stm32f103xb.s
 
 TIM1_CC_IRQHandler 0000001A
 
 Symbol: TIM1_CC_IRQHandler
    Definitions
-      At line 273 in file startup_stm32f103xb.s
+      At line 274 in file startup_stm32f103xb.s
    Uses
       At line 123 in file startup_stm32f103xb.s
-      At line 229 in file startup_stm32f103xb.s
+      At line 230 in file startup_stm32f103xb.s
 
 TIM1_TRG_COM_IRQHandler 0000001A
 
 Symbol: TIM1_TRG_COM_IRQHandler
    Definitions
-      At line 272 in file startup_stm32f103xb.s
+      At line 273 in file startup_stm32f103xb.s
    Uses
       At line 122 in file startup_stm32f103xb.s
-      At line 228 in file startup_stm32f103xb.s
+      At line 229 in file startup_stm32f103xb.s
 
 TIM1_UP_IRQHandler 0000001A
 
 Symbol: TIM1_UP_IRQHandler
    Definitions
-      At line 271 in file startup_stm32f103xb.s
+      At line 272 in file startup_stm32f103xb.s
    Uses
       At line 121 in file startup_stm32f103xb.s
-      At line 227 in file startup_stm32f103xb.s
+      At line 228 in file startup_stm32f103xb.s
 
 TIM2_IRQHandler 0000001A
 
 Symbol: TIM2_IRQHandler
    Definitions
-      At line 274 in file startup_stm32f103xb.s
+      At line 275 in file startup_stm32f103xb.s
    Uses
       At line 124 in file startup_stm32f103xb.s
-      At line 230 in file startup_stm32f103xb.s
+      At line 231 in file startup_stm32f103xb.s
 
 TIM3_IRQHandler 0000001A
 
 Symbol: TIM3_IRQHandler
    Definitions
-      At line 275 in file startup_stm32f103xb.s
+      At line 276 in file startup_stm32f103xb.s
    Uses
       At line 125 in file startup_stm32f103xb.s
-      At line 231 in file startup_stm32f103xb.s
+      At line 232 in file startup_stm32f103xb.s
 
 TIM4_IRQHandler 0000001A
 
@@ -1070,61 +1071,61 @@ Relocatable symbols
 
 Symbol: TIM4_IRQHandler
    Definitions
-      At line 276 in file startup_stm32f103xb.s
+      At line 277 in file startup_stm32f103xb.s
    Uses
       At line 126 in file startup_stm32f103xb.s
-      At line 232 in file startup_stm32f103xb.s
+      At line 233 in file startup_stm32f103xb.s
 
 USART1_IRQHandler 0000001A
 
 Symbol: USART1_IRQHandler
    Definitions
-      At line 283 in file startup_stm32f103xb.s
+      At line 284 in file startup_stm32f103xb.s
    Uses
       At line 133 in file startup_stm32f103xb.s
-      At line 239 in file startup_stm32f103xb.s
+      At line 240 in file startup_stm32f103xb.s
 
 USART2_IRQHandler 0000001A
 
 Symbol: USART2_IRQHandler
    Definitions
-      At line 284 in file startup_stm32f103xb.s
+      At line 285 in file startup_stm32f103xb.s
    Uses
       At line 134 in file startup_stm32f103xb.s
-      At line 240 in file startup_stm32f103xb.s
+      At line 241 in file startup_stm32f103xb.s
 
 USART3_IRQHandler 0000001A
 
 Symbol: USART3_IRQHandler
    Definitions
-      At line 285 in file startup_stm32f103xb.s
+      At line 286 in file startup_stm32f103xb.s
    Uses
       At line 135 in file startup_stm32f103xb.s
-      At line 241 in file startup_stm32f103xb.s
+      At line 242 in file startup_stm32f103xb.s
 
 USBWakeUp_IRQHandler 0000001A
 
 Symbol: USBWakeUp_IRQHandler
    Definitions
-      At line 288 in file startup_stm32f103xb.s
+      At line 289 in file startup_stm32f103xb.s
    Uses
       At line 138 in file startup_stm32f103xb.s
-      At line 244 in file startup_stm32f103xb.s
+      At line 245 in file startup_stm32f103xb.s
 
 USB_HP_CAN1_TX_IRQHandler 0000001A
 
 Symbol: USB_HP_CAN1_TX_IRQHandler
    Definitions
-      At line 265 in file startup_stm32f103xb.s
+      At line 266 in file startup_stm32f103xb.s
    Uses
       At line 115 in file startup_stm32f103xb.s
-      At line 221 in file startup_stm32f103xb.s
+      At line 222 in file startup_stm32f103xb.s
 
 USB_LP_CAN1_RX0_IRQHandler 0000001A
 
 Symbol: USB_LP_CAN1_RX0_IRQHandler
    Definitions
-      At line 266 in file startup_stm32f103xb.s
+      At line 267 in file startup_stm32f103xb.s
    Uses
 
 
@@ -1133,25 +1134,25 @@ ARM Macro Assembler    Page 9 Alphabetic symbol ordering
 Relocatable symbols
 
       At line 116 in file startup_stm32f103xb.s
-      At line 222 in file startup_stm32f103xb.s
+      At line 223 in file startup_stm32f103xb.s
 
 UsageFault_Handler 00000010
 
 Symbol: UsageFault_Handler
    Definitions
-      At line 178 in file startup_stm32f103xb.s
+      At line 179 in file startup_stm32f103xb.s
    Uses
       At line 84 in file startup_stm32f103xb.s
-      At line 179 in file startup_stm32f103xb.s
+      At line 180 in file startup_stm32f103xb.s
 
 WWDG_IRQHandler 0000001A
 
 Symbol: WWDG_IRQHandler
    Definitions
-      At line 246 in file startup_stm32f103xb.s
+      At line 247 in file startup_stm32f103xb.s
    Uses
       At line 96 in file startup_stm32f103xb.s
-      At line 202 in file startup_stm32f103xb.s
+      At line 203 in file startup_stm32f103xb.s
 
 55 symbols
 
@@ -1197,7 +1198,7 @@ Symbol: SystemInit
    Definitions
       At line 149 in file startup_stm32f103xb.s
    Uses
-      At line 150 in file startup_stm32f103xb.s
+      At line 151 in file startup_stm32f103xb.s
 Comment: SystemInit used once
 __main 00000000
 
@@ -1205,7 +1206,7 @@ Symbol: __main
    Definitions
       At line 148 in file startup_stm32f103xb.s
    Uses
-      At line 152 in file startup_stm32f103xb.s
+      At line 153 in file startup_stm32f103xb.s
 Comment: __main used once
 2 symbols
 407 symbols in table

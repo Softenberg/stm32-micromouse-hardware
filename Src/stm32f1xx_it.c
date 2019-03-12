@@ -204,13 +204,26 @@ void SysTick_Handler(void)
   HAL_IncTick();
   /* USER CODE BEGIN SysTick_IRQn 1 */
 	
+	Millis++;
+	
+	//Random Button / LED testing
+	if( HAL_GPIO_ReadPin(Button2_GPIO_Port, Button2_Pin) == GPIO_PIN_RESET )
+		HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);//Green
+		
+	if( HAL_GPIO_ReadPin(Button1_GPIO_Port, Button1_Pin) == GPIO_PIN_SET )
+		HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_SET); //red
 	
 	//Stops the reglerloop from starting until after 2s. 
 	if(Millis >= 2000){
 		speedProfile();
 	}
 	
-	Millis++;
+	//Let the user know the code is running)
+	if(Millis % 2000 == 0)
+		HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+		
+	
+	
 
   /* USER CODE END SysTick_IRQn 1 */
 }

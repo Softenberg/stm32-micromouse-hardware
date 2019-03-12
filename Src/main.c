@@ -45,6 +45,7 @@
 /* USER CODE BEGIN Includes */
 #include "pwm.h"
 #include "motor_control.h"
+#include "adc.h"
 
 /* USER CODE END Includes */
 
@@ -78,6 +79,7 @@ UART_HandleTypeDef huart2;
 /* USER CODE BEGIN PV */
 int acceleration;
 int proc;
+float voltage;
 
 /* USER CODE END PV */
 
@@ -97,6 +99,17 @@ static void MX_TIM1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+// Code used for sending transmitting data via UART via the printf() function. 
+#ifdef __GNUC__
+	#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+	#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif
+PUTCHAR_PROTOTYPE{
+	HAL_UART_Transmit(&huart2, (uint8_t *) &ch, 1, 0xFFFF);
+	return ch;
+}
 
 /* USER CODE END 0 */
 
@@ -138,11 +151,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	
   motorSetup();
-	
-	/* Start PWM timer*/
-	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
-	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
-	
+	pwmSetup();
 	
   /* USER CODE END 2 */
 
@@ -153,23 +162,34 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-	  HAL_Delay(2000);
+		
+		printf("Encoder speed: %.2f --- Battery voltage: %.2f \n\r", curSpeedX, batteryVoltage() );
+		HAL_Delay(1000);
+		
+		//Sample code for moving one cell distance.
+		// There are some bugs with the needToDecelerate.
+		// 	1. If the maxSpeed is to low we won't get an deacceleration rate that is small enough to proc the if statement
+		//  2. If we go to far and dist <0 => dist = 1. This should be checked.
+		//I think the main problem is that the function doesn't exactly do what it is suppose to.
+		// Even if our speed is low the deaceleration needed should still surpas our deacceleration rate at some point.
 		
 		
+		// The problem might be that we exit the code loop even though we have not yet decelerated. 
+		//			This means that we havn't started decelerating when we already have passed oneCellDistance.
 		if(proc){
 			proc = 0;
-			distanceLeft = distanceToCounts(180);
+			distanceLeft = distanceToCounts(180); //180 mm
 			
 			do{
 				acceleration = needToDecelerate(distanceLeft, curSpeedX, 0);
-				if( acceleration < decX)
+				if(acceleration < decX)
 					targetSpeedX = maxSpeed;
 				else
 					targetSpeedX = 0;
 			}while((encoderCount - oldEncoderCount) < oneCellDistance);
 			
-			oldEncoderCount = encoderCount;
+			oldEncoderCount = encoderCount; //This crates an error if you run the motor somewhere else and then try run this section of code. 
+			proc = 0;
 		}
 		
 		

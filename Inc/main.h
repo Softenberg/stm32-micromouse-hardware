@@ -109,7 +109,11 @@ void Error_Handler(void);
 #define BIN1_Pin GPIO_PIN_5
 #define BIN1_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
-extern int32_t countDiff;
+extern ADC_HandleTypeDef hadc1;
+extern TIM_HandleTypeDef htim2; 
+extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim4;	
+extern int proc;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

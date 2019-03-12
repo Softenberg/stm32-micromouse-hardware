@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 
+void pwmSetup(void);
 void setLeftPWM(int32_t speed);
 void setRightPWM(int32_t speed);
 

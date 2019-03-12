@@ -31,3 +31,4 @@ bluepillv2\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 bluepillv2\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 bluepillv2\main.o: ../Inc/pwm.h
 bluepillv2\main.o: ../Inc/motor_control.h
+bluepillv2\main.o: ../Inc/adc.h

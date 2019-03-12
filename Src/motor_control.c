@@ -5,8 +5,7 @@
 #include "motor_control.h"
 #include "pwm.h"
 
-extern TIM_HandleTypeDef htim2;
-extern TIM_HandleTypeDef htim4;
+
 
 int distanceLeft;
 int leftBaseSpeed;
@@ -49,8 +48,8 @@ float decX = 1000;
 float accW = 1; //cm/s^2 
 float decW = 1;
 
-int moveSpeed = 100; // speedToCounts(500*2)
-int maxSpeed = 320; //speedToCounts(1000*2)
+int moveSpeed = speedToCounts(100*2); // max 0.1 m/s
+int maxSpeed = speedToCounts(500*2); // max 0.5 m/s, absolute max is around 1m/s.
 
 int oneCellDistance = distanceToCounts(180); //One cell is 180mm
 
@@ -182,6 +181,8 @@ int needToDecelerate(int32_t dist, int16_t curSpd, int16_t endSpd){
 	if (dist<0) dist = 1;			//-dist;
 	if (dist == 0) dist = 1;  //prevent divide by 0
 	
+	// The / 1000 is needed because we are converting from counts/(ms^2) to m/s. 
+	// countsToSpeed takes care of one *1000 since it converts speed, not acceleration.
 	int acc = countsToSpeed((curSpd*curSpd - endSpd*endSpd)*1000/dist/4/2);
 		
 	if(acc < 0)
@@ -189,12 +190,13 @@ int needToDecelerate(int32_t dist, int16_t curSpd, int16_t endSpd){
 	
 	return acc;
 	
-	//use equation 2*a*S = Vt^2 - V0^2  ==>  a = (Vt^2-V0^2)/2/S
+	// 2as = V
+	//*a*S = Vt^2 - V0^2  ==>  a = (Vt^2-V0^2)/2/S
 	//because the speed is the sum of left and right wheels(which means it's doubled), that's why there is a "/4" in equation since the square of 2 is 4
 }
 
 /**
-	* @brief Function that rotates the robot a given amount of degrees.
+	* @brief Function that rotates the robot a given amount of degrees. (NOT IMPLEMENTED)
 	* @param angle	(degrees)	The angle you want to turn. Positive means right turn. 
 */
 void rotate(int angle){

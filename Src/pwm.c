@@ -2,6 +2,11 @@
 #include "main.h"
 #include "stm32f1xx_hal.h"
 
+void pwmSetup(){
+	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
+}
+
 void setRightPWM(int32_t speed){
 	//Saturation of the speed signal
 	if(speed > 999)
