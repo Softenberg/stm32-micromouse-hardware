@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdlib.h>
 #include "main.h"
 #include "stm32f1xx_hal.h"
 #include "motor_control.h"
@@ -13,6 +14,7 @@ int rightBaseSpeed;
 
 int encoderChange;
 int encoderCount;
+int oldEncoderCount;
 
 int leftEncoder;
 int rightEncoder;
@@ -40,17 +42,18 @@ float oldPosErrorX = 0;
 float oldPosErrorW = 0;
 int posPwmX = 0;
 int posPwmW = 0;
-float kpX = 30, kdX = 10;  //original is 2 and 4
-float kpW = 10, kdW = 12;//used in straight, original is 1 and 12
+float kpX = 5, kdX = 4;  //original is 2 and 4, when using Lipo on 8.4V you need to lower Kp.
+float kpW = 2, kdW = 12;//used in straight, original is 1 and 12
 float accX = 1000;//0.6m/s/s  => 600mm/s, The unit i use is cm/s or cm/s^2, should be mm/s instead I think
 float decX = 1000; 
 float accW = 1; //cm/s^2 
 float decW = 1;
 
-int forwardCorrection = 0;
-int reverseCorrection = 0;
-int lRevCorrVal;
-int rRevCorrVal;
+int moveSpeed = 100; // speedToCounts(500*2)
+int maxSpeed = 320; //speedToCounts(1000*2)
+
+int oneCellDistance = distanceToCounts(180); //One cell is 180mm
+
 void motorSetup(void){
 	/* Start the encoder timer */
 		HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
@@ -80,18 +83,19 @@ void getEncoderStatus(void){
 	leftEncoderChange = leftEncoder - leftEncoderOld;
 	rightEncoderChange = rightEncoder - rightEncoderOld;
 	
+	// Overflow correction
 	if(leftEncoderChange > 0xF000){
 		leftEncoderChange = leftEncoder - 0xFFFF - leftEncoderOld;
 	}else if(leftEncoderChange < - 0xF000){
 		leftEncoderChange = 0xFFFF - leftEncoderOld + leftEncoder;
 	}
 	
+	// Overflow correction
 	if(rightEncoderChange > 0xF000){
 		rightEncoderChange = rightEncoder - 0xFFFF - rightEncoderOld;
 	}else if(rightEncoderChange < - 0xF000){
 		rightEncoderChange = 0xFFFF - rightEncoderOld + rightEncoder;
 	}
-	
 	
 	encoderChange = (leftEncoderChange + rightEncoderChange)/2;	 
 
@@ -102,7 +106,7 @@ void getEncoderStatus(void){
 	rightEncoderCount += rightEncoderChange;
 	encoderCount =  (leftEncoderCount+rightEncoderCount)/2;	
 	
-	//distanceLeft -= encoderChange;// update distanceLeft	
+	distanceLeft -= encoderChange;
 }
 
 
@@ -157,5 +161,43 @@ void calculateMotorPwm(void){ // encoder PD controller
 
 	setLeftPWM(leftBaseSpeed);
 	setRightPWM(rightBaseSpeed);
+}
+
+
+
+
+
+
+/**
+	* @brief Function that determines at what rate you need to decelerate 
+	*        in order to reach the goal speed within a given distance and current speed.
+	* @param dist		(encoder counts)	The distance until the goal speed should be reached. 
+	* @param curSpd	(counts/ms)				The current speed	
+	* @param endSpd	(counts/ms)				The goal speed		
+	* @return The deceleration
+*/
+int needToDecelerate(int32_t dist, int16_t curSpd, int16_t endSpd){
+	if (curSpd<0) curSpd = -curSpd;
+	if (endSpd<0) endSpd = -endSpd;
+	if (dist<0) dist = 1;			//-dist;
+	if (dist == 0) dist = 1;  //prevent divide by 0
+	
+	int acc = countsToSpeed((curSpd*curSpd - endSpd*endSpd)*1000/dist/4/2);
+		
+	if(acc < 0)
+		acc = -acc;
+	
+	return acc;
+	
+	//use equation 2*a*S = Vt^2 - V0^2  ==>  a = (Vt^2-V0^2)/2/S
+	//because the speed is the sum of left and right wheels(which means it's doubled), that's why there is a "/4" in equation since the square of 2 is 4
+}
+
+/**
+	* @brief Function that rotates the robot a given amount of degrees.
+	* @param angle	(degrees)	The angle you want to turn. Positive means right turn. 
+*/
+void rotate(int angle){
+
 }
 

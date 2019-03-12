@@ -76,6 +76,8 @@ TIM_HandleTypeDef htim4;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+int acceleration;
+int proc;
 
 /* USER CODE END PV */
 
@@ -152,7 +154,25 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-	  HAL_Delay(500);
+	  HAL_Delay(2000);
+		
+		
+		if(proc){
+			proc = 0;
+			distanceLeft = distanceToCounts(180);
+			
+			do{
+				acceleration = needToDecelerate(distanceLeft, curSpeedX, 0);
+				if( acceleration < decX)
+					targetSpeedX = maxSpeed;
+				else
+					targetSpeedX = 0;
+			}while((encoderCount - oldEncoderCount) < oneCellDistance);
+			
+			oldEncoderCount = encoderCount;
+		}
+		
+		
   }
   /* USER CODE END 3 */
 }

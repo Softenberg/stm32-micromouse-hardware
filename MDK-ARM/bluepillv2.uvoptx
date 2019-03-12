@@ -148,7 +148,24 @@
           <Name>-U-O142 -O2254 -SF4000 -C0 -A0 -I0 -HNlocalhost -HP7184 -P1 -N00("ARM CoreSight SW-DP") -D00(1BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC800 -FN1 -FF0STM32F10x_128.FLM -FS08000000 -FL010000 -FP0($$Device:STM32F103C8$Flash\STM32F10x_128.FLM)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>161</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134227880</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>../Src/main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\bluepillv2\../Src/main.c\161</Expression>
+        </Bp>
+      </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -168,42 +185,47 @@
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>curSpeedW</ItemText>
+          <ItemText>encoderChange,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>kpW</ItemText>
+          <ItemText>kdX</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>encoderChange,0x0A</ItemText>
+          <ItemText>oneCellDistance,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>kdW</ItemText>
+          <ItemText>acceleration,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>targetSpeedW,0x0A</ItemText>
+          <ItemText>encoderCount,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
           <WinNumber>1</WinNumber>
-          <ItemText>kdX</ItemText>
+          <ItemText>oldEncoderCount,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>9</count>
           <WinNumber>1</WinNumber>
-          <ItemText>leftEncoderOld,0x0A</ItemText>
+          <ItemText>encoderCount - oldEncoderCount,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>10</count>
           <WinNumber>1</WinNumber>
-          <ItemText>leftEncoder,0x0A</ItemText>
+          <ItemText>distanceLeft,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>proc,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
@@ -230,57 +252,32 @@
         <Ww>
           <count>4</count>
           <WinNumber>2</WinNumber>
-          <ItemText>leftBaseSpeed,0x0A</ItemText>
+          <ItemText>encoderFeedbackX,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>2</WinNumber>
-          <ItemText>rightBaseSpeed,0x0A</ItemText>
+          <ItemText>targetSpeedX,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>2</WinNumber>
-          <ItemText>encoderFeedbackX,0x0A</ItemText>
+          <ItemText>encoderFeedbackW,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>2</WinNumber>
-          <ItemText>posErrorW</ItemText>
+          <ItemText>posPwmX,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
           <WinNumber>2</WinNumber>
-          <ItemText>targetSpeedX,0x0A</ItemText>
+          <ItemText>maxSpeed,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>9</count>
           <WinNumber>2</WinNumber>
-          <ItemText>encoderFeedbackW,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>10</count>
-          <WinNumber>2</WinNumber>
-          <ItemText>posPwmX,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>11</count>
-          <WinNumber>2</WinNumber>
-          <ItemText>posPwmW,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>12</count>
-          <WinNumber>2</WinNumber>
-          <ItemText>encoderChange,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>13</count>
-          <WinNumber>2</WinNumber>
-          <ItemText>leftEncoderChange,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>14</count>
-          <WinNumber>2</WinNumber>
-          <ItemText>rightEncoderChange,0x0A</ItemText>
+          <ItemText>targetSpeedW,0x0A</ItemText>
         </Ww>
       </WatchWindow2>
       <Tracepoint>

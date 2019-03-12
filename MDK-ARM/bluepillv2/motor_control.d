@@ -1,5 +1,6 @@
 bluepillv2\motor_control.o: ..\Src\motor_control.c
 bluepillv2\motor_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+bluepillv2\motor_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 bluepillv2\motor_control.o: ../Inc/main.h
 bluepillv2\motor_control.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 bluepillv2\motor_control.o: ../Inc/stm32f1xx_hal_conf.h
