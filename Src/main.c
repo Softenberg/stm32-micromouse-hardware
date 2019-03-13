@@ -166,6 +166,14 @@ int main(void)
 		printf("Encoder speed: %.2f m/s --- Battery voltage: %.2f \n\r", countsToSpeed(encoderChange) / 1000, batteryVoltage() );
 		HAL_Delay(1000);
 		
+		//Beep Sweep
+		/*
+		for(int i = 0; i < 256; i++){
+			beep(i);
+			HAL_Delay(5);
+		}
+		*/
+		
 		//Sample code for moving one cell distance.
 		// There are some bugs with the needToDecelerate.
 		// 	1. If the maxSpeed is to low we won't get an deacceleration rate that is small enough to proc the if statement
@@ -275,7 +283,7 @@ static void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_9;
   sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  sConfig.SamplingTime = ADC_SAMPLETIME_41CYCLES_5;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -340,9 +348,9 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 0;
+  htim1.Init.Prescaler = 176-1;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 0;
+  htim1.Init.Period = 255-1;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
