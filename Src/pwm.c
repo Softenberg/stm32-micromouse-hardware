@@ -3,10 +3,15 @@
 #include "stm32f1xx_hal.h"
 
 void pwmSetup(){
-	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
-	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3); // Buzzer
+	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2); // Motor A - Left
+	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3); // Motor B - Right
 }
-
+void beep(uint32_t tone){
+	if(tone > 999)
+		tone = 999;
+	TIM1->CCR3 = tone;
+}
 void setRightPWM(int32_t speed){
 	//Saturation of the speed signal
 	if(speed > 999)

@@ -6,6 +6,7 @@
 void pwmSetup(void);
 void setLeftPWM(int32_t speed);
 void setRightPWM(int32_t speed);
+void beep(uint32_t);
 
 #define R_PWM TIM3->CCR2
 #define L_PWM TIM3->CCR3

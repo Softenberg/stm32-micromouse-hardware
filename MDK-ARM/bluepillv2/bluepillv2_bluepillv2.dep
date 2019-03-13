@@ -1,6 +1,6 @@
 Dependencies for Project 'bluepillv2', Target 'bluepillv2': (DO NOT MODIFY !)
 F (startup_stm32f103xb.s)(0x5C87E39D)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_bluepillv2-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include--pd "__UVISION_VERSION SETA 526" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1"--list startup_stm32f103xb.lst --xref -o bluepillv2\startup_stm32f103xb.o --depend bluepillv2\startup_stm32f103xb.d)
-F (../Src/main.c)(0x5C87EDF6)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_bluepillv2-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bluepillv2\main.o --omf_browse bluepillv2\main.crf --depend bluepillv2\main.d)
+F (../Src/main.c)(0x5C89039D)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_bluepillv2-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bluepillv2\main.o --omf_browse bluepillv2\main.crf --depend bluepillv2\main.d)
 I (../Inc/main.h)(0x5C87DFE4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x5C7F949F)
 I (../Inc/stm32f1xx_hal_conf.h)(0x5C7F949D)
@@ -31,7 +31,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x5C7F949F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x5C7F949F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x5C7F949F)
 I (../Inc/pwm.h)(0x5C87DFC1)
-I (../Inc/motor_control.h)(0x5C86421F)
+I (../Inc/motor_control.h)(0x5C8902D7)
 I (../Inc/adc.h)(0x5C87DDC0)
 F (../Src/stm32f1xx_it.c)(0x5C878EED)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_bluepillv2-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bluepillv2\stm32f1xx_it.o --omf_browse bluepillv2\stm32f1xx_it.crf --depend bluepillv2\stm32f1xx_it.d)
 I (../Inc/main.h)(0x5C87DFE4)
@@ -64,7 +64,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x5C7F949F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x5C7F949F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x5C7F949F)
 I (../Inc/stm32f1xx_it.h)(0x5C7F949C)
-I (../Inc/motor_control.h)(0x5C86421F)
+I (../Inc/motor_control.h)(0x5C8902D7)
 F (../Src/stm32f1xx_hal_msp.c)(0x5C7F949D)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_bluepillv2-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bluepillv2\stm32f1xx_hal_msp.o --omf_browse bluepillv2\stm32f1xx_hal_msp.crf --depend bluepillv2\stm32f1xx_hal_msp.d)
 I (../Inc/main.h)(0x5C87DFE4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x5C7F949F)
@@ -157,7 +157,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x5C7F949F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x5C7F949F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x5C7F949F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x5C7F949F)
-I (../Inc/motor_control.h)(0x5C86421F)
+I (../Inc/motor_control.h)(0x5C8902D7)
 I (../Inc/pwm.h)(0x5C87DFC1)
 F (..\Src\adc.c)(0x5C87E076)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_bluepillv2-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bluepillv2\adc.o --omf_browse bluepillv2\adc.crf --depend bluepillv2\adc.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
@@ -687,5 +687,5 @@ F (..\Inc\main.h)(0x5C87DFE4)()
 F (..\Inc\stm32f1xx_hal_conf.h)(0x5C7F949D)()
 F (..\Inc\stm32f1xx_it.h)(0x5C7F949C)()
 F (..\Inc\pwm.h)(0x5C87DFC1)()
-F (..\Inc\motor_control.h)(0x5C86421F)()
+F (..\Inc\motor_control.h)(0x5C8902D7)()
 F (..\Inc\adc.h)(0x5C87DDC0)()

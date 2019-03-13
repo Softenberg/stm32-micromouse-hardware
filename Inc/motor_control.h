@@ -11,7 +11,8 @@ extern int maxSpeed;
 extern float decX; 
 extern int encoderCount;
 extern int oldEncoderCount;
-extern int oneCellDistance; 
+extern int oneCellDistance;
+extern int encoderChange;
 
 void motorSetup(void);
 void speedProfile(void);

@@ -66,6 +66,9 @@ Section Cross References
     main.o(i.main) refers to pwm.o(i.pwmSetup) for pwmSetup
     main.o(i.main) refers to adc.o(i.batteryVoltage) for batteryVoltage
     main.o(i.main) refers to f2d.o(.text) for __aeabi_f2d
+    main.o(i.main) refers to dflti.o(.text) for __aeabi_i2d
+    main.o(i.main) refers to dmul.o(.text) for __aeabi_dmul
+    main.o(i.main) refers to ddiv.o(.text) for __aeabi_ddiv
     main.o(i.main) refers to printfa.o(i.__0printf) for __2printf
     main.o(i.main) refers to stm32f1xx_hal.o(i.HAL_Delay) for HAL_Delay
     main.o(i.main) refers to ffixi.o(.text) for __aeabi_f2iz
@@ -73,7 +76,7 @@ Section Cross References
     main.o(i.main) refers to fflti.o(.text) for __aeabi_i2f
     main.o(i.main) refers to cfcmple.o(.text) for __aeabi_cfcmple
     main.o(i.main) refers to main.o(.bss) for .bss
-    main.o(i.main) refers to motor_control.o(.data) for curSpeedX
+    main.o(i.main) refers to motor_control.o(.data) for distanceLeft
     main.o(i.main) refers to main.o(.data) for .data
     main.o(i.main) refers to motor_control.o(.data) for oneCellDistance
     main.o(i.main) refers to motor_control.o(.data) for oldEncoderCount
@@ -1624,16 +1627,16 @@ Image Symbol Table
     i.fputc                                  0x080036ac   Section        0  main.o(i.fputc)
     i.getEncoderStatus                       0x080036c4   Section        0  motor_control.o(i.getEncoderStatus)
     i.main                                   0x08003754   Section        0  main.o(i.main)
-    i.motorSetup                             0x080038c8   Section        0  motor_control.o(i.motorSetup)
-    i.needToDecelerate                       0x08003924   Section        0  motor_control.o(i.needToDecelerate)
-    i.pwmSetup                               0x080039a4   Section        0  pwm.o(i.pwmSetup)
-    i.readADC                                0x080039c0   Section        0  adc.o(i.readADC)
-    i.setLeftPWM                             0x080039e0   Section        0  pwm.o(i.setLeftPWM)
-    i.setRightPWM                            0x08003a40   Section        0  pwm.o(i.setRightPWM)
-    i.speedProfile                           0x08003aa0   Section        0  motor_control.o(i.speedProfile)
-    i.updateCurrentSpeed                     0x08003ab4   Section        0  motor_control.o(i.updateCurrentSpeed)
-    .constdata                               0x08003c08   Section       16  system_stm32f1xx.o(.constdata)
-    .constdata                               0x08003c18   Section        8  system_stm32f1xx.o(.constdata)
+    i.motorSetup                             0x0800390c   Section        0  motor_control.o(i.motorSetup)
+    i.needToDecelerate                       0x08003968   Section        0  motor_control.o(i.needToDecelerate)
+    i.pwmSetup                               0x080039e8   Section        0  pwm.o(i.pwmSetup)
+    i.readADC                                0x08003a04   Section        0  adc.o(i.readADC)
+    i.setLeftPWM                             0x08003a24   Section        0  pwm.o(i.setLeftPWM)
+    i.setRightPWM                            0x08003a84   Section        0  pwm.o(i.setRightPWM)
+    i.speedProfile                           0x08003ae4   Section        0  motor_control.o(i.speedProfile)
+    i.updateCurrentSpeed                     0x08003af8   Section        0  motor_control.o(i.updateCurrentSpeed)
+    .constdata                               0x08003c4c   Section       16  system_stm32f1xx.o(.constdata)
+    .constdata                               0x08003c5c   Section        8  system_stm32f1xx.o(.constdata)
     .data                                    0x20000000   Section        8  main.o(.data)
     .data                                    0x20000008   Section        4  stm32f1xx_it.o(.data)
     .data                                    0x2000000c   Section      132  motor_control.o(.data)
@@ -1878,19 +1881,19 @@ Image Symbol Table
     calculateMotorPwm                        0x08003605   Thumb Code   162  motor_control.o(i.calculateMotorPwm)
     fputc                                    0x080036ad   Thumb Code    20  main.o(i.fputc)
     getEncoderStatus                         0x080036c5   Thumb Code   136  motor_control.o(i.getEncoderStatus)
-    main                                     0x08003755   Thumb Code   264  main.o(i.main)
-    motorSetup                               0x080038c9   Thumb Code    76  motor_control.o(i.motorSetup)
-    needToDecelerate                         0x08003925   Thumb Code   106  motor_control.o(i.needToDecelerate)
-    pwmSetup                                 0x080039a5   Thumb Code    22  pwm.o(i.pwmSetup)
-    readADC                                  0x080039c1   Thumb Code    32  adc.o(i.readADC)
-    setLeftPWM                               0x080039e1   Thumb Code    84  pwm.o(i.setLeftPWM)
-    setRightPWM                              0x08003a41   Thumb Code    84  pwm.o(i.setRightPWM)
-    speedProfile                             0x08003aa1   Thumb Code    18  motor_control.o(i.speedProfile)
-    updateCurrentSpeed                       0x08003ab5   Thumb Code   312  motor_control.o(i.updateCurrentSpeed)
-    AHBPrescTable                            0x08003c08   Data          16  system_stm32f1xx.o(.constdata)
-    APBPrescTable                            0x08003c18   Data           8  system_stm32f1xx.o(.constdata)
-    Region$$Table$$Base                      0x08003c20   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08003c40   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x08003755   Thumb Code   304  main.o(i.main)
+    motorSetup                               0x0800390d   Thumb Code    76  motor_control.o(i.motorSetup)
+    needToDecelerate                         0x08003969   Thumb Code   106  motor_control.o(i.needToDecelerate)
+    pwmSetup                                 0x080039e9   Thumb Code    22  pwm.o(i.pwmSetup)
+    readADC                                  0x08003a05   Thumb Code    32  adc.o(i.readADC)
+    setLeftPWM                               0x08003a25   Thumb Code    84  pwm.o(i.setLeftPWM)
+    setRightPWM                              0x08003a85   Thumb Code    84  pwm.o(i.setRightPWM)
+    speedProfile                             0x08003ae5   Thumb Code    18  motor_control.o(i.speedProfile)
+    updateCurrentSpeed                       0x08003af9   Thumb Code   312  motor_control.o(i.updateCurrentSpeed)
+    AHBPrescTable                            0x08003c4c   Data          16  system_stm32f1xx.o(.constdata)
+    APBPrescTable                            0x08003c5c   Data           8  system_stm32f1xx.o(.constdata)
+    Region$$Table$$Base                      0x08003c64   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08003c84   Number         0  anon$$obj.o(Region$$Table)
     acceleration                             0x20000000   Data           4  main.o(.data)
     proc                                     0x20000004   Data           4  main.o(.data)
     Millis                                   0x20000008   Data           4  stm32f1xx_it.o(.data)
@@ -1952,9 +1955,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00003cf0, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00003d34, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00003c40, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00003c84, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2106,36 +2109,36 @@ Memory Map of the image
     0x08003604   0x08003604   0x000000a8   Code   RO          419    i.calculateMotorPwm  motor_control.o
     0x080036ac   0x080036ac   0x00000018   Code   RO           21    i.fputc             main.o
     0x080036c4   0x080036c4   0x00000090   Code   RO          420    i.getEncoderStatus  motor_control.o
-    0x08003754   0x08003754   0x00000174   Code   RO           22    i.main              main.o
-    0x080038c8   0x080038c8   0x0000005c   Code   RO          421    i.motorSetup        motor_control.o
-    0x08003924   0x08003924   0x00000080   Code   RO          422    i.needToDecelerate  motor_control.o
-    0x080039a4   0x080039a4   0x0000001c   Code   RO          383    i.pwmSetup          pwm.o
-    0x080039c0   0x080039c0   0x00000020   Code   RO          499    i.readADC           adc.o
-    0x080039e0   0x080039e0   0x00000060   Code   RO          384    i.setLeftPWM        pwm.o
-    0x08003a40   0x08003a40   0x00000060   Code   RO          385    i.setRightPWM       pwm.o
-    0x08003aa0   0x08003aa0   0x00000012   Code   RO          424    i.speedProfile      motor_control.o
-    0x08003ab2   0x08003ab2   0x00000002   PAD
-    0x08003ab4   0x08003ab4   0x00000154   Code   RO          425    i.updateCurrentSpeed  motor_control.o
-    0x08003c08   0x08003c08   0x00000010   Data   RO         3321    .constdata          system_stm32f1xx.o
-    0x08003c18   0x08003c18   0x00000008   Data   RO         3322    .constdata          system_stm32f1xx.o
-    0x08003c20   0x08003c20   0x00000020   Data   RO         3686    Region$$Table       anon$$obj.o
+    0x08003754   0x08003754   0x000001b8   Code   RO           22    i.main              main.o
+    0x0800390c   0x0800390c   0x0000005c   Code   RO          421    i.motorSetup        motor_control.o
+    0x08003968   0x08003968   0x00000080   Code   RO          422    i.needToDecelerate  motor_control.o
+    0x080039e8   0x080039e8   0x0000001c   Code   RO          383    i.pwmSetup          pwm.o
+    0x08003a04   0x08003a04   0x00000020   Code   RO          499    i.readADC           adc.o
+    0x08003a24   0x08003a24   0x00000060   Code   RO          384    i.setLeftPWM        pwm.o
+    0x08003a84   0x08003a84   0x00000060   Code   RO          385    i.setRightPWM       pwm.o
+    0x08003ae4   0x08003ae4   0x00000012   Code   RO          424    i.speedProfile      motor_control.o
+    0x08003af6   0x08003af6   0x00000002   PAD
+    0x08003af8   0x08003af8   0x00000154   Code   RO          425    i.updateCurrentSpeed  motor_control.o
+    0x08003c4c   0x08003c4c   0x00000010   Data   RO         3321    .constdata          system_stm32f1xx.o
+    0x08003c5c   0x08003c5c   0x00000008   Data   RO         3322    .constdata          system_stm32f1xx.o
+    0x08003c64   0x08003c64   0x00000020   Data   RO         3686    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08003c40, Size: 0x00000678, Max: 0x00005000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08003c84, Size: 0x00000678, Max: 0x00005000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08003c40   0x00000008   Data   RW           24    .data               main.o
-    0x20000008   0x08003c48   0x00000004   Data   RW          202    .data               stm32f1xx_it.o
-    0x2000000c   0x08003c4c   0x00000084   Data   RW          426    .data               motor_control.o
-    0x20000090   0x08003cd0   0x00000004   Data   RW          430    .data               motor_control.o
-    0x20000094   0x08003cd4   0x00000004   Data   RW          431    .data               motor_control.o
-    0x20000098   0x08003cd8   0x00000004   Data   RW          432    .data               motor_control.o
-    0x2000009c   0x08003cdc   0x0000000c   Data   RW         2451    .data               stm32f1xx_hal.o
-    0x200000a8   0x08003ce8   0x00000004   Data   RW         3323    .data               system_stm32f1xx.o
-    0x200000ac   0x08003cec   0x00000004   Data   RW         3664    .data               mc_w.l(stdout.o)
+    0x20000000   0x08003c84   0x00000008   Data   RW           24    .data               main.o
+    0x20000008   0x08003c8c   0x00000004   Data   RW          202    .data               stm32f1xx_it.o
+    0x2000000c   0x08003c90   0x00000084   Data   RW          426    .data               motor_control.o
+    0x20000090   0x08003d14   0x00000004   Data   RW          430    .data               motor_control.o
+    0x20000094   0x08003d18   0x00000004   Data   RW          431    .data               motor_control.o
+    0x20000098   0x08003d1c   0x00000004   Data   RW          432    .data               motor_control.o
+    0x2000009c   0x08003d20   0x0000000c   Data   RW         2451    .data               stm32f1xx_hal.o
+    0x200000a8   0x08003d2c   0x00000004   Data   RW         3323    .data               system_stm32f1xx.o
+    0x200000ac   0x08003d30   0x00000004   Data   RW         3664    .data               mc_w.l(stdout.o)
     0x200000b0        -       0x000001c4   Zero   RW           23    .bss                main.o
-    0x20000274   0x08003cf0   0x00000004   PAD
+    0x20000274   0x08003d34   0x00000004   PAD
     0x20000278        -       0x00000400   Zero   RW            1    STACK               startup_stm32f103xb.o
 
 
@@ -2147,7 +2150,7 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        108         16          0          0          0       1351   adc.o
-      1228        172          0          8        452     459179   main.o
+      1296        200          0          8        452     459171   main.o
        890         80          0        144          0       4871   motor_control.o
        220         30          0          0          0       1474   pwm.o
         36          8        236          0       1024        788   startup_stm32f103xb.o
@@ -2167,7 +2170,7 @@ Image component sizes
         72         16         24          4          0       1111   system_stm32f1xx.o
 
     ----------------------------------------------------------------------
-     10608        796        292        172       1480     555448   Object Totals
+     10676        824        292        172       1480     555440   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         18          0          0          0          4          0   (incl. Padding)
 
@@ -2235,15 +2238,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     15132        902        292        176       1480     551884   Grand Totals
-     15132        902        292        176       1480     551884   ELF Image Totals
-     15132        902        292        176          0          0   ROM Totals
+     15200        930        292        176       1480     551876   Grand Totals
+     15200        930        292        176       1480     551876   ELF Image Totals
+     15200        930        292        176          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                15424 (  15.06kB)
+    Total RO  Size (Code + RO Data)                15492 (  15.13kB)
     Total RW  Size (RW Data + ZI Data)              1656 (   1.62kB)
-    Total ROM Size (Code + RO Data + RW Data)      15600 (  15.23kB)
+    Total ROM Size (Code + RO Data + RW Data)      15668 (  15.30kB)
 
 ==============================================================================
 

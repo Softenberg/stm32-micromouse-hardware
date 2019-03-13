@@ -110,6 +110,7 @@ void Error_Handler(void);
 #define BIN1_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 extern ADC_HandleTypeDef hadc1;
+extern TIM_HandleTypeDef htim1; 
 extern TIM_HandleTypeDef htim2; 
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;	

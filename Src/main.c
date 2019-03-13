@@ -163,7 +163,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		
-		printf("Encoder speed: %.2f --- Battery voltage: %.2f \n\r", curSpeedX, batteryVoltage() );
+		printf("Encoder speed: %.2f m/s --- Battery voltage: %.2f \n\r", countsToSpeed(encoderChange) / 1000, batteryVoltage() );
 		HAL_Delay(1000);
 		
 		//Sample code for moving one cell distance.
