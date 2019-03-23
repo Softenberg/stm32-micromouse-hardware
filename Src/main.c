@@ -78,8 +78,15 @@ UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 int acceleration;
+int rotDistance;
+volatile float accelerationW;
 int proc;
+int rot;
+
 float voltage;
+float degs;
+float radians;
+float rotSpeed;
 
 /* USER CODE END PV */
 
@@ -163,8 +170,26 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		
+		//Used for testing rotation
+		radians = degreesToRadians(degs);
+		rotSpeed = rotSpeedToCounts(degs);
+		//rotationLeft = rotToCounts(degs);
+		
+		
 		printf("Encoder speed: %.2f m/s --- Battery voltage: %.2f \n\r", countsToSpeed(encoderChange) / 1000, batteryVoltage() );
-		HAL_Delay(1000);
+		HAL_Delay(500);
+		//Let the user know if the battery is running low.
+		if(batteryVoltage() < 6.5){
+			HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_SET); //red
+			HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET);//Green
+			beep(150);
+		}else{
+			HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_RESET); //red
+			HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);//Green
+			beep(0);
+		}
+		
+		
 		
 		//Beep Sweep
 		/*
@@ -184,9 +209,10 @@ int main(void)
 		
 		// The problem might be that we exit the code loop even though we have not yet decelerated. 
 		//			This means that we havn't started decelerating when we already have passed oneCellDistance.
+		
+		//Move Forward
 		if(proc){
-			proc = 0;
-			distanceLeft = distanceToCounts(180); //180 mm
+			distanceLeft = distanceToCounts(180); // 180 mm
 			
 			do{
 				acceleration = needToDecelerate(distanceLeft, curSpeedX, 0);
@@ -199,6 +225,28 @@ int main(void)
 			oldEncoderCount = encoderCount; //This crates an error if you run the motor somewhere else and then try run this section of code. 
 			proc = 0;
 		}
+		
+		//Rotate
+		// Can't figure out why "needToDecelerate" doesn't work on rotation, will do a simple version. 
+		if(rot){
+			rotationLeft = rotToCounts(90); // 90 degrees
+			while(rotationLeft > 0){
+				targetSpeedW = turnSpeed;
+			}
+			targetSpeedW = 0;
+			rot = 0;
+			/*
+			do{
+				accelerationW = needToDecelerate(rotationLeft, curSpeedW, 0);
+				if(accelerationW < decW)
+					targetSpeedW = turnSpeed;
+				else
+					targetSpeedW = 0;
+			}while(rotationLeft > 0 );
+			*/
+			rot = 0;
+		}
+		
 		
 		
   }

@@ -153,45 +153,60 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>kpX</ItemText>
+          <ItemText>acceleration,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>encoderChange,0x0A</ItemText>
+          <ItemText>distanceLeft,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>kdX</ItemText>
+          <ItemText>proc,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>acceleration,0x0A</ItemText>
+          <ItemText>rot,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>encoderCount - oldEncoderCount,0x0A</ItemText>
+          <ItemText>rotationLeft,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>distanceLeft,0x0A</ItemText>
+          <ItemText>degs</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>proc,0x0A</ItemText>
+          <ItemText>accelerationW,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>accX</ItemText>
+          <ItemText>decW</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>rightEncoderCount - oldRightEncoderCount,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>rotationLeft &gt; 0.0</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>acceleration,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
           <WinNumber>1</WinNumber>
           <ItemText>decX</ItemText>
         </Ww>
@@ -241,6 +256,26 @@
           <count>8</count>
           <WinNumber>2</WinNumber>
           <ItemText>rightBaseSpeed,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>targetSpeedW,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>curSpeedW</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>turnSpeed,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>12</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>encoderFeedbackW,0x0A</ItemText>
         </Ww>
       </WatchWindow2>
       <MemoryWindow1>

@@ -3,14 +3,27 @@
 
 #include <stdint.h>
 
+#define WHEEL_TO_WHEEL 133.5 // Center of wheel to the center of the other wheel. 
+#define WHEEL_D 31.0
+#define CPR 2096.0
+#define PI 3.141592
+#define GEARING (19.0 * 56.0/12.0)
+
 extern int distanceLeft;
+extern volatile int rotationLeft;
 extern float curSpeedX;
+extern float curSpeedW;
 extern int targetSpeedX;
+extern int targetSpeedW;
 extern int moveSpeed;
 extern int maxSpeed;
+extern int turnSpeed;
 extern float decX; 
+extern float decW;
 extern int encoderCount;
+extern int rightEncoderCount;
 extern int oldEncoderCount;
+extern int oldRightEncoderCount;
 extern int oneCellDistance;
 extern int encoderChange;
 
@@ -19,16 +32,16 @@ void speedProfile(void);
 void getEncoderStatus(void);
 void updateCurrentSpeed(void);
 void calculateMotorPwm(void);
-int needToDecelerate(int32_t, int16_t, int16_t);
+float needToDecelerate(int32_t, int16_t, int16_t);
 void rotate(int);
 
-// 40mm is wheel diameter
 // 1000 is for s => ms
-// 2096 is counts per rev on the motor
-// 19 is gearing form wheel to motor.
-#define speedToCounts(speed) (speed / (3.141592 * 40) / 1000.0 * 2096.0 * 19.0)
-#define countsToSpeed(counts) (counts * (3.141592 * 40) * 1000.0 / 2096.0 / 19.0)
-#define distanceToCounts(distance) (distance / (3.141592 * 40) * 2096.0 * 19)
+#define speedToCounts(speed) (speed / (PI * WHEEL_D) / 1000.0 * CPR * GEARING)
+#define countsToSpeed(counts) (counts * (PI * WHEEL_D) * 1000.0 / CPR / GEARING)
+#define distanceToCounts(distance) (distance / (PI * WHEEL_D) * CPR * GEARING)
+
+#define degreesToRadians(deg) (deg / 360.0 * 2 * PI)
+#define rotSpeedToCounts(rotSpeed) ( speedToCounts(degreesToRadians(rotSpeed) * WHEEL_D) )
+#define rotToCounts(deg) ( distanceToCounts(deg / 360.0 * (PI * WHEEL_TO_WHEEL)) ) //
 
 #endif 
-

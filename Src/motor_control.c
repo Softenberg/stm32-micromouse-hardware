@@ -8,12 +8,14 @@
 
 
 int distanceLeft;
+volatile int rotationLeft; // Has to be volatile since it gets optimized away if not.
 int leftBaseSpeed;
 int rightBaseSpeed;
 
 int encoderChange;
 int encoderCount;
 int oldEncoderCount;
+int oldRightEncoderCount;
 
 int leftEncoder;
 int rightEncoder;
@@ -43,13 +45,14 @@ int posPwmX = 0;
 int posPwmW = 0;
 float kpX = 5, kdX = 4;  //original is 2 and 4, when using Lipo on 8.4V you need to lower Kp.
 float kpW = 2, kdW = 12;//used in straight, original is 1 and 12
-float accX = 1000;//0.6m/s/s  => 600mm/s, The unit i use is cm/s or cm/s^2, should be mm/s instead I think
-float decX = 1000; 
-float accW = 1; //cm/s^2 
+float accX = 400;//0.6m/s/s  => 600mm/s
+float decX = 400; 
+float accW = 1;
 float decW = 1;
 
-int moveSpeed = speedToCounts(100*2); // max 0.1 m/s
-int maxSpeed = speedToCounts(500*2); // max 0.5 m/s, absolute max is around 1m/s.
+int moveSpeed = speedToCounts(50*2); // max 0.05 m/s
+int maxSpeed = speedToCounts(100*2); // max 0.1 m/s, with current gearing approx. 0.1m/s is max.
+int turnSpeed = rotSpeedToCounts(180*2); // 90 deg/s
 
 int oneCellDistance = distanceToCounts(180); //One cell is 180mm
 
@@ -106,6 +109,7 @@ void getEncoderStatus(void){
 	encoderCount =  (leftEncoderCount+rightEncoderCount)/2;	
 	
 	distanceLeft -= encoderChange;
+	rotationLeft -= rightEncoderChange;
 }
 
 
@@ -130,7 +134,7 @@ void updateCurrentSpeed(void){
 	}	
 }
 
-void calculateMotorPwm(void){ // encoder PD controller	
+void calculateMotorPwm(void){ // PD controller	
 	//int gyroFeedback;
 	int rotationalFeedback;
 	//int sensorFeedback;
@@ -175,15 +179,14 @@ void calculateMotorPwm(void){ // encoder PD controller
 	* @param endSpd	(counts/ms)				The goal speed		
 	* @return The deceleration
 */
-int needToDecelerate(int32_t dist, int16_t curSpd, int16_t endSpd){
+float needToDecelerate(int32_t dist, int16_t curSpd, int16_t endSpd){
 	if (curSpd<0) curSpd = -curSpd;
 	if (endSpd<0) endSpd = -endSpd;
 	if (dist<0) dist = 1;			//-dist;
 	if (dist == 0) dist = 1;  //prevent divide by 0
-	
-	// The / 1000 is needed because we are converting from counts/(ms^2) to m/s. 
+	 
 	// countsToSpeed takes care of one *1000 since it converts speed, not acceleration.
-	int acc = countsToSpeed((curSpd*curSpd - endSpd*endSpd)*1000/dist/4/2);
+	float acc = countsToSpeed((curSpd*curSpd - endSpd*endSpd)*1000/dist/4/2);
 		
 	if(acc < 0)
 		acc = -acc;

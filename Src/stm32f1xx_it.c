@@ -219,7 +219,7 @@ void SysTick_Handler(void)
 	}
 	
 	//Let the user know the code is running)
-	if(Millis % 2000 == 0)
+	if(Millis % 1000 == 0)
 		HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
 		
 	
