@@ -98,10 +98,12 @@ void Error_Handler(void);
 #define PWMB_GPIO_Port GPIOB
 #define Battry_Monitor_Pin GPIO_PIN_1
 #define Battry_Monitor_GPIO_Port GPIOB
-#define Button1_Pin GPIO_PIN_8
-#define Button1_GPIO_Port GPIOA
-#define Button2_Pin GPIO_PIN_9
-#define Button2_GPIO_Port GPIOA
+#define Btn_Back_Pin GPIO_PIN_8
+#define Btn_Back_GPIO_Port GPIOA
+#define Btn_Back_EXTI_IRQn EXTI9_5_IRQn
+#define Btn_Front_Pin GPIO_PIN_9
+#define Btn_Front_GPIO_Port GPIOA
+#define Btn_Front_EXTI_IRQn EXTI9_5_IRQn
 #define Buzzer_Pin GPIO_PIN_10
 #define Buzzer_GPIO_Port GPIOA
 #define BIN2_Pin GPIO_PIN_4
@@ -115,6 +117,7 @@ extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;	
 extern int proc;
+extern int rot;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

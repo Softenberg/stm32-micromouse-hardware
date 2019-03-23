@@ -206,13 +206,6 @@ void SysTick_Handler(void)
 	
 	Millis++;
 	
-	//Random Button / LED testing
-	if( HAL_GPIO_ReadPin(Button2_GPIO_Port, Button2_Pin) == GPIO_PIN_RESET )
-		HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);//Green
-		
-	if( HAL_GPIO_ReadPin(Button1_GPIO_Port, Button1_Pin) == GPIO_PIN_SET )
-		HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_SET); //red
-	
 	//Stops the reglerloop from starting until after 2s. 
 	if(Millis >= 2000){
 		speedProfile();
@@ -236,6 +229,22 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles EXTI line[9:5] interrupts.
+  */
+void EXTI9_5_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI9_5_IRQn 0 */
+
+	HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+  /* USER CODE END EXTI9_5_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_8);
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_9);
+  /* USER CODE BEGIN EXTI9_5_IRQn 1 */
+
+  /* USER CODE END EXTI9_5_IRQn 1 */
+}
+
+/**
   * @brief This function handles USART2 global interrupt.
   */
 void USART2_IRQHandler(void)
@@ -250,6 +259,19 @@ void USART2_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+	if(GPIO_Pin == Btn_Front_Pin){
+		if(HAL_GPIO_ReadPin(Btn_Back_GPIO_Port, Btn_Back_Pin) == 1)
+			rot = 1;
+		else
+			proc = 1;
+	}/*
+	else if(GPIO_Pin == Btn_Back_Pin){
+		HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+		rot = 1;
+	}*/
+}
 
 
 /* USER CODE END 1 */

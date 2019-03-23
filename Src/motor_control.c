@@ -48,7 +48,7 @@ float kpW = 2, kdW = 12;//used in straight, original is 1 and 12
 float accX = 400;//0.6m/s/s  => 600mm/s
 float decX = 400; 
 float accW = 1;
-float decW = 1;
+float decW = 10;
 
 int moveSpeed = speedToCounts(50*2); // max 0.05 m/s
 int maxSpeed = speedToCounts(100*2); // max 0.1 m/s, with current gearing approx. 0.1m/s is max.
