@@ -6,7 +6,20 @@
 #include "pwm.h"
 
 
+// NEW
+float currPos;
+float setPos;
+float currAngle;
+float setAngle;
+float integralError;
 
+
+
+
+
+
+
+// OLD
 int distanceLeft;
 volatile int rotationLeft; // Has to be volatile since it gets optimized away if not.
 int leftBaseSpeed;
@@ -43,8 +56,8 @@ float oldPosErrorX = 0;
 float oldPosErrorW = 0;
 int posPwmX = 0;
 int posPwmW = 0;
-float kpX = 5, kdX = 4;  //original is 2 and 4, when using Lipo on 8.4V you need to lower Kp.
-float kpW = 2, kdW = 12;//used in straight, original is 1 and 12
+float kpX = 10, kdX = 0, kiX = 0;  //original is 2 and 4, when using Lipo on 8.4V you need to lower Kp.
+float kpW = 50, kdW = 0;//used in straight, original is 1 and 12
 float accX = 400;//0.6m/s/s  => 600mm/s
 float decX = 400; 
 float accW = 1;
@@ -74,7 +87,7 @@ void motorSetup(void){
 
 void speedProfile(void){	
 	getEncoderStatus();
-	updateCurrentSpeed();
+	//updateCurrentSpeed();
 	calculateMotorPwm();      
 }
 
@@ -99,17 +112,17 @@ void getEncoderStatus(void){
 		rightEncoderChange = 0xFFFF - rightEncoderOld + rightEncoder;
 	}
 	
-	encoderChange = (leftEncoderChange + rightEncoderChange)/2;	 
+	//encoderChange = (leftEncoderChange + rightEncoderChange)/2;	 
 
 	leftEncoderOld = leftEncoder;
 	rightEncoderOld = rightEncoder;
 					
-	leftEncoderCount += leftEncoderChange;
-	rightEncoderCount += rightEncoderChange;
-	encoderCount =  (leftEncoderCount+rightEncoderCount)/2;	
+	//leftEncoderCount += leftEncoderChange;
+	//rightEncoderCount += rightEncoderChange;
+	//encoderCount =  (leftEncoderCount+rightEncoderCount)/2;	
 	
-	distanceLeft -= encoderChange;
-	rotationLeft -= rightEncoderChange;
+	//distanceLeft -= encoderChange;
+	//rotationLeft -= rightEncoderChange;
 }
 
 
@@ -135,32 +148,30 @@ void updateCurrentSpeed(void){
 }
 
 void calculateMotorPwm(void){ // PD controller	
-	//int gyroFeedback;
-	int rotationalFeedback;
-	//int sensorFeedback;
 	
-  /* simple PD loop to generate base speed for both motors */	
-	encoderFeedbackX = rightEncoderChange + leftEncoderChange;
-	encoderFeedbackW = rightEncoderChange - leftEncoderChange;	
+  /* simple PID loop to generate base speed for both motors */	
+	encoderFeedbackX = (leftEncoderChange + rightEncoderChange)/2;
+	currPos += countsToDistance(encoderFeedbackX);
 	
-	//gyroFeedback = aSpeed/gyroFeedbackRatio; //gyroFeedbackRatio mentioned in curve turn lecture	
-	//sensorFeedback = sensorError/a_scale;//have sensor error properly scale to fit the system
-	
-	rotationalFeedback = encoderFeedbackW;
+	encoderFeedbackW = (leftEncoderChange - rightEncoderChange)/2;	
+	currAngle += countsToRot(encoderFeedbackW);
 
 	
-	//Removed += to = sign to only do velocity control.
-	posErrorX += curSpeedX - encoderFeedbackX;
-	posErrorW += curSpeedW - rotationalFeedback;
 	
-	posPwmX = kpX * posErrorX + kdX * (posErrorX - oldPosErrorX);
+	//Removed += to = sign to only do velocity control.
+	posErrorX = setPos  - currPos;
+	integralError += posErrorX;
+	
+	posErrorW = setAngle - currAngle;
+	
+	posPwmX = kpX * posErrorX + kdX * (posErrorX - oldPosErrorX) + kiX * integralError;
 	posPwmW = kpW * posErrorW + kdW * (posErrorW - oldPosErrorW);
 	
 	oldPosErrorX = posErrorX;
 	oldPosErrorW = posErrorW;
 	
-	leftBaseSpeed = posPwmX - posPwmW;
-	rightBaseSpeed = posPwmX + posPwmW;
+	leftBaseSpeed = posPwmX + posPwmW;
+	rightBaseSpeed = posPwmX - posPwmW;
 
 	setLeftPWM(leftBaseSpeed);
 	setRightPWM(rightBaseSpeed);

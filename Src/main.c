@@ -198,59 +198,19 @@ int main(void)
 			HAL_Delay(5);
 		}
 		*/
-		
-		//Sample code for moving one cell distance.
-		// There are some bugs with the needToDecelerate.
-		// 	1. If the maxSpeed is to low we won't get an deacceleration rate that is small enough to proc the if statement
-		//  2. If we go to far and dist <0 => dist = 1. This should be checked.
-		//I think the main problem is that the function doesn't exactly do what it is suppose to.
-		// Even if our speed is low the deaceleration needed should still surpas our deacceleration rate at some point.
-		
-		
-		// The problem might be that we exit the code loop even though we have not yet decelerated. 
-		//			This means that we havn't started decelerating when we already have passed oneCellDistance.
+	
 		
 		//Move Forward
 		if(proc){
-			distanceLeft = distanceToCounts(180); // 180 mm
-			
-			do{
-				acceleration = needToDecelerate(distanceLeft, curSpeedX, 0);
-				if(acceleration < decX)
-					targetSpeedX = maxSpeed;
-				else
-					targetSpeedX = 0;
-			}while((encoderCount - oldEncoderCount) < oneCellDistance);
-			
-			oldEncoderCount = encoderCount; //This crates an error if you run the motor somewhere else and then try run this section of code. 
+			// Set the reference to one cell distance;
+			setPos += 180;
+			// Wait for the error to be sufficiently small. while(posErrorX > 100);
 			proc = 0;
-		}
-		
-		//Rotate
-		// Can't figure out why "needToDecelerate" doesn't work on rotation, will do a simple version. 
+		}	
 		if(rot){
-			rotationLeft = rotToCounts(360); // 90 degrees
-			/*
-			while(rotationLeft > 0){
-				targetSpeedW = turnSpeed;
-			}
-			targetSpeedW = 0;
-			rot = 0;*/
-			
-			do{
-				accelerationW = needToDecelerate(rotationLeft, curSpeedW, 0);
-				if(accelerationW < decW)
-					targetSpeedW = turnSpeed;
-				else{
-					targetSpeedW = 0;
-				}
-			}while(rotationLeft > 0 );
-			
+			setAngle += 90;
 			rot = 0;
 		}
-		
-		
-		
   }
   /* USER CODE END 3 */
 }

@@ -3,12 +3,21 @@
 
 #include <stdint.h>
 
-#define WHEEL_TO_WHEEL 133.5 // Center of wheel to the center of the other wheel. 
+#define WHEEL_TO_WHEEL 137.5 // Center of wheel to the center of the other wheel. 
 #define WHEEL_D 31.0
 #define CPR 2096.0
 #define PI 3.141592
 #define GEARING (19.0 * 56.0/12.0)
 
+//NEW
+extern float currPos;
+extern float setPos;
+extern float currAngle;
+extern float setAngle;
+extern float integralError;
+
+
+//OLD
 extern int distanceLeft;
 extern volatile int rotationLeft;
 extern float curSpeedX;
@@ -39,9 +48,10 @@ void rotate(int);
 #define speedToCounts(speed) (speed / (PI * WHEEL_D) / 1000.0 * CPR * GEARING)
 #define countsToSpeed(counts) (counts * (PI * WHEEL_D) * 1000.0 / CPR / GEARING)
 #define distanceToCounts(distance) (distance / (PI * WHEEL_D) * CPR * GEARING)
+#define countsToDistance(distance) (distance * (PI * WHEEL_D) / CPR / GEARING)
 
 #define degreesToRadians(deg) (deg / 360.0 * 2 * PI)
 #define rotSpeedToCounts(rotSpeed) ( speedToCounts(degreesToRadians(rotSpeed) * WHEEL_D) )
-#define rotToCounts(deg) ( distanceToCounts(deg / 360.0 * (PI * WHEEL_TO_WHEEL)) ) //
-
+#define rotToCounts(deg) ( distanceToCounts(deg / 360.0 * (PI * WHEEL_TO_WHEEL)) ) 
+#define countsToRot(counts) ( countsToDistance(counts) / (PI * WHEEL_TO_WHEEL) * 360.0  ) 
 #endif 

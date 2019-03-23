@@ -153,129 +153,99 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>acceleration,0x0A</ItemText>
+          <ItemText>proc,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>distanceLeft,0x0A</ItemText>
+          <ItemText>setPos,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>proc,0x0A</ItemText>
+          <ItemText>encoderFeedbackX,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>rot,0x0A</ItemText>
+          <ItemText>currPos,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>rotationLeft,0x0A</ItemText>
+          <ItemText>posErrorX</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>degs</ItemText>
+          <ItemText>posPwmX,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>accelerationW,0x0A</ItemText>
+          <ItemText>kpX</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>decW</ItemText>
+          <ItemText>kdX</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
           <WinNumber>1</WinNumber>
-          <ItemText>rightEncoderCount - oldRightEncoderCount,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>9</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>rotationLeft &gt; 0.0</ItemText>
-        </Ww>
-        <Ww>
-          <count>10</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>acceleration,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>11</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>decX</ItemText>
+          <ItemText>kiX</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
           <count>0</count>
           <WinNumber>2</WinNumber>
-          <ItemText>leftEncoderChange,0x0A</ItemText>
+          <ItemText>rot,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>2</WinNumber>
-          <ItemText>rightEncoderChange,0x0A</ItemText>
+          <ItemText>setAngle</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>2</WinNumber>
-          <ItemText>curSpeedX</ItemText>
+          <ItemText>encoderFeedbackW,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>2</WinNumber>
-          <ItemText>posErrorX</ItemText>
+          <ItemText>currAngle</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>2</WinNumber>
-          <ItemText>encoderFeedbackX,0x0A</ItemText>
+          <ItemText>posErrorW</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>2</WinNumber>
-          <ItemText>targetSpeedX,0x0A</ItemText>
+          <ItemText>posPwmW,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>2</WinNumber>
-          <ItemText>maxSpeed,0x0A</ItemText>
+          <ItemText>leftBaseSpeed,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>2</WinNumber>
-          <ItemText>leftBaseSpeed,0x0A</ItemText>
+          <ItemText>rightBaseSpeed,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
           <WinNumber>2</WinNumber>
-          <ItemText>rightBaseSpeed,0x0A</ItemText>
+          <ItemText>kpW</ItemText>
         </Ww>
         <Ww>
           <count>9</count>
           <WinNumber>2</WinNumber>
-          <ItemText>targetSpeedW,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>10</count>
-          <WinNumber>2</WinNumber>
-          <ItemText>curSpeedW</ItemText>
-        </Ww>
-        <Ww>
-          <count>11</count>
-          <WinNumber>2</WinNumber>
-          <ItemText>turnSpeed,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>12</count>
-          <WinNumber>2</WinNumber>
-          <ItemText>encoderFeedbackW,0x0A</ItemText>
+          <ItemText>kdW</ItemText>
         </Ww>
       </WatchWindow2>
       <MemoryWindow1>
