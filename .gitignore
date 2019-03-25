@@ -1,0 +1,5 @@
+
+
+#Ignore compiled files (hex, axf and so on)
+MDK-ARM/bluepillv2/*
+

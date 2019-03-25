@@ -80,16 +80,44 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define LED_Pin GPIO_PIN_13
-#define LED_GPIO_Port GPIOC
+#define LED1_Pin GPIO_PIN_13
+#define LED1_GPIO_Port GPIOC
+#define LED2_Pin GPIO_PIN_14
+#define LED2_GPIO_Port GPIOC
+#define LED3_Pin GPIO_PIN_15
+#define LED3_GPIO_Port GPIOC
 #define H_Bridge_Enable_Pin GPIO_PIN_4
 #define H_Bridge_Enable_GPIO_Port GPIOA
 #define AIN2_Pin GPIO_PIN_5
 #define AIN2_GPIO_Port GPIOA
 #define AIN1_Pin GPIO_PIN_6
 #define AIN1_GPIO_Port GPIOA
+#define PWMA_Pin GPIO_PIN_7
+#define PWMA_GPIO_Port GPIOA
+#define PWMB_Pin GPIO_PIN_0
+#define PWMB_GPIO_Port GPIOB
+#define Battry_Monitor_Pin GPIO_PIN_1
+#define Battry_Monitor_GPIO_Port GPIOB
+#define Btn_Back_Pin GPIO_PIN_8
+#define Btn_Back_GPIO_Port GPIOA
+#define Btn_Back_EXTI_IRQn EXTI9_5_IRQn
+#define Btn_Front_Pin GPIO_PIN_9
+#define Btn_Front_GPIO_Port GPIOA
+#define Btn_Front_EXTI_IRQn EXTI9_5_IRQn
+#define Buzzer_Pin GPIO_PIN_10
+#define Buzzer_GPIO_Port GPIOA
+#define BIN2_Pin GPIO_PIN_4
+#define BIN2_GPIO_Port GPIOB
+#define BIN1_Pin GPIO_PIN_5
+#define BIN1_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
-extern int32_t countDiff;
+extern ADC_HandleTypeDef hadc1;
+extern TIM_HandleTypeDef htim1; 
+extern TIM_HandleTypeDef htim2; 
+extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim4;	
+extern int proc;
+extern int rot;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
