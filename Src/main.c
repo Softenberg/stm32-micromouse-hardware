@@ -88,6 +88,9 @@ float degs;
 float radians;
 float rotSpeed;
 
+uint8_t commands[] = "flflflfl";
+int go = 1;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -198,17 +201,30 @@ int main(void)
 			HAL_Delay(5);
 		}
 		*/
-	
+		if(go){
+			for(int i = 0; i < sizeof(commands); i++){
+				if(commands[i] == 'f'){
+					setPos += 180;
+					HAL_Delay(2300);
+				}else if(commands[i] == 'l'){
+					setAngle += 90;
+					HAL_Delay(1300);
+				}
+			}
+			go = 0;
+		}
 		
 		//Move Forward
 		if(proc){
 			// Set the reference to one cell distance;
 			setPos += 180;
+			//while(posErrorX > 1);
 			// Wait for the error to be sufficiently small. while(posErrorX > 100);
 			proc = 0;
 		}	
 		if(rot){
 			setAngle += 90;
+			//while(posErrorW > 1);
 			rot = 0;
 		}
   }

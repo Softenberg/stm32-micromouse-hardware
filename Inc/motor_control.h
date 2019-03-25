@@ -15,6 +15,8 @@ extern float setPos;
 extern float currAngle;
 extern float setAngle;
 extern float integralError;
+extern volatile float posErrorX;
+extern volatile float posErrorW;
 
 
 //OLD
@@ -48,7 +50,7 @@ void rotate(int);
 #define speedToCounts(speed) (speed / (PI * WHEEL_D) / 1000.0 * CPR * GEARING)
 #define countsToSpeed(counts) (counts * (PI * WHEEL_D) * 1000.0 / CPR / GEARING)
 #define distanceToCounts(distance) (distance / (PI * WHEEL_D) * CPR * GEARING)
-#define countsToDistance(distance) (distance * (PI * WHEEL_D) / CPR / GEARING)
+#define countsToDistance(counts) (counts * (PI * WHEEL_D) / CPR / GEARING)
 
 #define degreesToRadians(deg) (deg / 360.0 * 2 * PI)
 #define rotSpeedToCounts(rotSpeed) ( speedToCounts(degreesToRadians(rotSpeed) * WHEEL_D) )

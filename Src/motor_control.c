@@ -50,13 +50,13 @@ int encoderFeedbackX = 0;
 int encoderFeedbackW = 0;
 float pidInputX = 0;
 float pidInputW = 0;
-float posErrorX = 0;
-float posErrorW = 0;
+float volatile posErrorX = 0;
+float volatile posErrorW = 0;
 float oldPosErrorX = 0;
 float oldPosErrorW = 0;
 int posPwmX = 0;
 int posPwmW = 0;
-float kpX = 10, kdX = 0, kiX = 0;  //original is 2 and 4, when using Lipo on 8.4V you need to lower Kp.
+float kpX = 15, kdX = 0, kiX = 1;  //original is 2 and 4, when using Lipo on 8.4V you need to lower Kp.
 float kpW = 50, kdW = 0;//used in straight, original is 1 and 12
 float accX = 400;//0.6m/s/s  => 600mm/s
 float decX = 400; 
@@ -160,7 +160,7 @@ void calculateMotorPwm(void){ // PD controller
 	
 	//Removed += to = sign to only do velocity control.
 	posErrorX = setPos  - currPos;
-	integralError += posErrorX;
+	integralError += posErrorX *0.001;
 	
 	posErrorW = setAngle - currAngle;
 	
